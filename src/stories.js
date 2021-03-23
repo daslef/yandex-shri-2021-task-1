@@ -10,11 +10,11 @@ import './scss/_media.scss';
 import './scss/_variables.scss';
 import './scss/_fonts.scss';
 
-import LeadersComponent from './components/leaders'
-import VoteComponent from './components/vote'
-import ChartComponent from './components/chart'
-import DiagramComponent from './components/diagram'
-import ActivityComponent from './components/activity'
+import LeadersComponent from './components/leaders';
+import VoteComponent from './components/vote';
+import ChartComponent from './components/chart';
+import DiagramComponent from './components/diagram';
+import ActivityComponent from './components/activity';
 
 
 window.renderTemplate = function(alias, data) {
@@ -22,15 +22,15 @@ window.renderTemplate = function(alias, data) {
     let content;
     
     if (alias == 'leaders') {
-        content = LeadersComponent(data.emoji, data.users, data.selectedUserId)
+        content = LeadersComponent(data.emoji, data.users, data.selectedUserId);
     } else if (alias == 'vote') {
-        content = VoteComponent(data.emoji, data.selectedUserId, data.users)
+        content = VoteComponent(data.emoji, data.selectedUserId, data.users);
     } else if (alias == 'chart') {
-        content = ChartComponent(data.values, data.users)
+        content = ChartComponent(data.values, data.users);
     } else if (alias == 'diagram') {
-        content = DiagramComponent(data.totalText, data.differenceText, data.categories)
+        content = DiagramComponent(data.totalText, data.differenceText, data.categories);
     } else if (alias == 'activity') {
-        content = ActivityComponent(data)
+        content = ActivityComponent(data);
     }
 
     return (

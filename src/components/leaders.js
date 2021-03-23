@@ -68,10 +68,8 @@ export default function LeadersComponent(emoji, users, selectedUsedId) {
     let selectedUser;
     
     if (selectedUsedId) {
-        console.log(emoji, users, selectedUsedId)
         const selectedUserIndex = users.map(object => object.id).indexOf(selectedUsedId)
         selectedUser = { ...users[selectedUserIndex], index: selectedUserIndex }
-        // console.log(selectedUser)
     }
 
     document.addEventListener('orientationchange', () => {

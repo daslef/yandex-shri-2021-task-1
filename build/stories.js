@@ -1,1 +1,391 @@
-(()=>{"use strict";function i(i,e,t,n=!1){return`<div class="podium__item__pic ${n&&"podium__item__pic--selected"}">\n            <picture>\n                <source srcset="./images/4x/${i}" media="(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)"/>\n                <source srcset="./images/3x/${i}" media="(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)"/>\n                <source srcset="./images/2x/${i}" media="(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)"/>\n                <img class="podium__item__photo" src="./images/1x/${i}">\n            </picture>\n        </div>\n        <div class="podium__item__name ${n&&"podium__item__name--selected"}">${e}</div>\n        <div class="podium__item__score ${n&&"podium__item__score--selected"}">${t}</div>`}function e({direction:i,selected:e}){return`<svg \n            width="64" \n            height="64" \n            class="vote__arrow vote__arrow${"up"==i?"--up":"--down"} ${!0===e?"vote__arrow--selected":""}" \n            viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">\n                <path \n                    fill-rule="evenodd" \n                    clip-rule="evenodd" \n                    d="M32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2ZM32 -2.79753e-06C14.3269 -4.34256e-06 4.34256e-06 14.3269 2.79753e-06 32C1.2525e-06 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 -1.2525e-06 32 -2.79753e-06ZM4.99999 32C4.99999 17.0883 17.0883 4.99999 32 4.99999C46.9117 4.99999 59 17.0883 59 32C59 46.9117 46.9117 59 32 59C17.0883 59 4.99999 46.9117 4.99999 32ZM38.9393 36.0607C39.5251 36.6464 40.4749 36.6464 41.0607 36.0607C41.6464 35.4749 41.6464 34.5251 41.0607 33.9393L33.0607 25.9393C32.4749 25.3536 31.5251 25.3536 30.9393 25.9393L22.9393 33.9393C22.3536 34.5251 22.3536 35.4749 22.9393 36.0607C23.5251 36.6464 24.4749 36.6464 25.0607 36.0607L32 29.1213L38.9393 36.0607Z" \n                />\n        </svg>`}function t(i){return`<div class="heatmap__element">\n            <img class="heatmap__image" src="./images/${0==i?"min":i<=2?"mid":i<=4?"max":"extra"}-${theme}.svg" />\n        </div>`}window.renderTemplate=function(n,a){let s;var d;return"leaders"==n?s=function(e,t,n){let a;if(n){console.log(e,t,n);const i=t.map((i=>i.id)).indexOf(n);a={...t[i],index:i}}return document.addEventListener("orientationchange",(()=>{location.reload()})),`<div class="slide__content podium">\n            ${t.slice(0,5).map(((t,n)=>function({srcSuffix:e,name:t,score:n,place:a,emoji:s,selectedUser:d}){const _=a>=4?"-small":a>=2?"-medium":"-large",c=window.screen.orientation.type;let r,l;if(c.startsWith("portrait")&&1==a&&d?.index>2)r=function(e){const{name:t,avatar:n,valueText:a}=e;let s='<div class="podium__item__awards podium__item__awards--selected">👍</div>';return s+=i(n,t,a,!0),s+='<div class="podium__item__delimiter"></div>',s+=`<div class="podium__item__place podium__item__place--selected">${e.index+1}</div>`,s}(d);else if(c.startsWith("landscape")&&5==a&&d?.index>4){const{avatar:i,name:e,valueText:t,index:n}=d;n++,r=""}else r="";return l=1==a?s:d?.name===t?"👍":"",`<div class="podium__item">\n            <div class="podium__item__awards">${l}</div>\n            ${i(e,t,n)}\n            <div class="podium__item__bar podium__item__bar${_}">\n                <div class="podium__item__place">${a}</div>\n                ${r}\n            </div>\n        </div>`}({srcSuffix:t.avatar,name:t.name,score:t.valueText,place:n+1,emoji:e,selectedUser:a}))).join("")}\n        </div>`}(a.emoji,a.users,a.selectedUserId):"vote"==n?s=function(i,t,n){const a=i=>function({srcSuffix:i,name:e,selected:t}){return`<div class="vote__item ${t?"vote__item--selected":""}">\n            <div class="vote__item__awards">${t?"👍":""}</div>\n            <div class="vote__item__pic">\n                <picture>\n                    <source srcset="./images/4x/${i}" media="(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)"/>\n                    <source srcset="./images/3x/${i}" media="(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)"/>\n                    <source srcset="./images/2x/${i}" media="(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)"/>\n                    <img class="vote__item__photo" src="./images/1x/${i}">\n                </picture>\n            </div>\n            <div class="vote__item__name">${e}</div>\n        </div>`}({srcSuffix:i.avatar,name:i.name,selected:i.id===t});return`<div class="slide__content vote">\n            <div class="slide__row slide__row--left">\n                ${a(n[0])}\n                ${a(n[3])}\n                ${a(n[6])}\n            </div>\n            <div class="slide__row slide__row--middle">\n                ${e({direction:"up",selected:!1})}\n                ${a(n[1])}\n                ${a(n[4])}\n                ${e({direction:"down",selected:!0})}\n            </div>\n            <div class="slide__row slide__row--right">\n                ${a(n[2])}\n                ${a(n[5])}\n                ${a(n[7])}\n            </div>\n        </div>`}(a.emoji,a.selectedUserId,a.users):"chart"==n?s=function(i,e){const t=function(i){return`<div class="chart__leaders">${i.slice(0,2).map((i=>function({srcSuffix:i,name:e,value:t}){return`<div class="chart__person">\n            <div class="chart__person__pic">\n                <picture>\n                    <source srcset="./images/4x/${i}" media="(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)"/>\n                    <source srcset="./images/3x/${i}" media="(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)"/>\n                    <source srcset="./images/2x/${i}" media="(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)"/>\n                    <img class="chart__person__photo" src="./images/1x/${i}">\n                </picture>\n            </div>\n            <div class="chart__person__meta">\n                <div class="chart__person__name">${e}</div>\n                <div class="chart__person__value">${t}</div>\n            </div>\n        </div>`}({srcSuffix:i.avatar,name:i.name,value:i.valueText}))).join('<div class="chart__leaders__separator"></div>')}</div>`}(e);return`<div class="slide__content chart">\n            ${function(i){let e;for(const[t,n]of i.entries())if(n.hasOwnProperty("active")&&!0===n.active){e=t;break}const t=Math.max(e-6,0),n=Math.min(e+2,i.length),a=i.slice(t,n+1),s=Math.max(...a.map((i=>i.value)));return`<div class="chart__list">${a.map(((i,e)=>function({value:i,title:e,isCurrent:t,maxValue:n}){let a=i/n*66.7;return a=a<1?"8px":`${a}%`,`<div class="chart__item ${t?"chart__item--active":""}">\n            <div class="chart__item__value">${i>0?i:""}</div>\n            <div class="chart__item__bar" style="min-height:${a}"></div>\n            <div class="chart__item__title">${e}</div>\n        </div>`}({value:i.value,title:i.title,isCurrent:i.hasOwnProperty("active"),maxValue:s}))).join("")}</div>`}(i)}\n            ${t}\n        </div>`}(a.values,a.users):"diagram"==n?(a.totalText,a.differenceText,s=`<div class="slide__content diagram">\n            ${function(i,e,t){const n=t.map((i=>i.valueText)),a=s.reduce(((i,e)=>i+e),0),s=n.map((i=>i/a));return'<div class="diagram__donut">\n        </div>'}(0,0,d=a.categories)}\n            ${function(i){return`<div class="diagram__legend">${i.map((i=>function({title:i,value:e,difference:t}){return`<div class="legend__item">\n            <div class="legend__item__indicator"></div>\n            <div class="legend__item__title">${i}</div>\n            <div class="legend__item__values">\n                <div class="legend__item__diff">${t.slice(0,t.indexOf(" "))}</div>\n                <div class="legend__item__total">${e.slice(0,t.indexOf(" "))}</div>\n            </div>\n        </div>`}({title:i.title,value:i.valueText,difference:i.differenceText}))).join('<div class="diagram__legend__separator"></div>')}</div>`}(d)}\n        </div>`):"activity"==n&&(s=function(i){const e=document.body.className.substr(6),n=window.screen.orientation.type;return document.addEventListener("orientationchange",(()=>{location.reload()})),`<div class="slide__content activity">\n            ${function(i,e){let n=[];return n=e.startsWith("landscape")?function(i){const e=[],n=["mon","tue","wed","thu","fri","sat","sun"];for(const a of n){const s=[];i[a].map(((i,e)=>{e%2==1?s[s.length-1]+=i:s.push(i)}));const d=s.map((i=>t(i))),_='<div class="heatmap__gap"></div>';n.indexOf(a)%2==0?d.push(_):d.unshift(_),e.push(d)}return e}(i):function(i){const e=[];for(let n=0;n<24;n++){const a=[i.mon[n],i.tue[n],i.wed[n],i.thu[n],i.fri[n],i.sat[n],i.sun[n]].map((i=>t(i))),s='<div class="heatmap__gap"></div>';n%2==0?a.push(s):a.unshift(s),e.push(a)}return e}(i),`<div class="activity__heatmap">\n            ${n.map(((i,e)=>`<div class="heatmap__row" style="bottom: ${16.7*(23-e)}px;">\n            ${i.join("")}\n        </div>`)).join("")}\n        </div>`}(i.data,n)}\n            ${function(i,e){return`<div class="activity__legend">\n            <div class="activity__legend__item">\n                <div class="activity__legend__pic">\n                    <img src=./images/slider-unit-${i}.svg />\n                </div>\n                <div class="activity__legend__text">${e.startsWith("landscape")?"2 часа":"1 час"}</div>\n            </div>\n            <div class="activity__legend__item">\n                <div class="activity__legend__pic activity__legend__pic--min"></div>\n                <div class="activity__legend__text">0</div>\n            </div>\n            <div class="activity__legend__item">\n                <div class="activity__legend__pic activity__legend__pic--mid"></div>\n                <div class="activity__legend__text">1 — 2</div>\n            </div>\n            <div class="activity__legend__item">\n                <div class="activity__legend__pic activity__legend__pic--max"></div>\n                <div class="activity__legend__text">3 — 4</div>\n            </div>\n            <div class="activity__legend__item">\n                <div class="activity__legend__pic activity__legend__pic--extra"></div>\n                <div class="activity__legend__text">5 — 6</div>\n            </div>\n        </div>`}(e,n)}\n        </div>`}(a)),`<div class="slide">\n            <div class="slide__heading">${a.title}</div>\n            <div class="slide__subhead">${a.subtitle}</div>\n            ${s}\n        </div>`}})();
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+;// CONCATENATED MODULE: ./src/components/leaders.js
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-only"); }
+
+function PersonCardComponent(srcSuffix, name, score) {
+  var selected = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+  return "<div class=\"podium__item__pic ".concat(selected && 'podium__item__pic--selected', "\">\n            <picture>\n                <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)\"/>\n                <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)\"/>\n                <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                <img class=\"podium__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n            </picture>\n        </div>\n        <div class=\"podium__item__name ").concat(selected && 'podium__item__name--selected', "\">").concat(name, "</div>\n        <div class=\"podium__item__score ").concat(selected && 'podium__item__score--selected', "\">").concat(score, "</div>");
+}
+
+function PersonCardEmbedded(selectedUser) {
+  var name = selectedUser.name,
+      avatar = selectedUser.avatar,
+      valueText = selectedUser.valueText;
+  var selectedPerson = '<div class="podium__item__awards podium__item__awards--selected">👍</div>';
+  selectedPerson += PersonCardComponent(avatar, name, valueText, true);
+  selectedPerson += '<div class="podium__item__delimiter"></div>';
+  selectedPerson += "<div class=\"podium__item__place podium__item__place--selected\">".concat(selectedUser.index + 1, "</div>");
+  return selectedPerson;
+}
+
+function PersonComponent(_ref) {
+  var srcSuffix = _ref.srcSuffix,
+      name = _ref.name,
+      score = _ref.score,
+      place = _ref.place,
+      emoji = _ref.emoji,
+      selectedUser = _ref.selectedUser;
+  var barSizeModifier = place >= 4 ? '-small' : place >= 2 ? '-medium' : '-large';
+  var orientation = window.screen.orientation.type;
+  var selectedPerson;
+
+  if (orientation.startsWith('portrait') && place == 1 && (selectedUser === null || selectedUser === void 0 ? void 0 : selectedUser.index) > 2) {
+    selectedPerson = PersonCardEmbedded(selectedUser);
+  } else if (orientation.startsWith('landscape') && place == 5 && (selectedUser === null || selectedUser === void 0 ? void 0 : selectedUser.index) > 4) {
+    var _srcSuffix = selectedUser.avatar,
+        _name = selectedUser.name,
+        _score = selectedUser.valueText,
+        _place = selectedUser.index;
+    _readOnlyError("place"), _place++;
+    selectedPerson = '';
+  } else {
+    selectedPerson = '';
+  }
+
+  var awardsEmoji;
+
+  if (place == 1) {
+    awardsEmoji = emoji;
+  } else if ((selectedUser === null || selectedUser === void 0 ? void 0 : selectedUser.name) === name) {
+    awardsEmoji = '👍';
+  } else {
+    awardsEmoji = '';
+  }
+
+  return "<div class=\"podium__item\">\n            <div class=\"podium__item__awards\">".concat(awardsEmoji, "</div>\n            ").concat(PersonCardComponent(srcSuffix, name, score), "\n            <div class=\"podium__item__bar podium__item__bar").concat(barSizeModifier, "\">\n                <div class=\"podium__item__place\">").concat(place, "</div>\n                ").concat(selectedPerson, "\n            </div>\n        </div>");
+}
+
+function LeadersComponent(emoji, users, selectedUsedId) {
+  var selectedUser;
+
+  if (selectedUsedId) {
+    var selectedUserIndex = users.map(function (object) {
+      return object.id;
+    }).indexOf(selectedUsedId);
+    selectedUser = _objectSpread(_objectSpread({}, users[selectedUserIndex]), {}, {
+      index: selectedUserIndex
+    });
+  }
+
+  document.addEventListener('orientationchange', function () {
+    location.reload();
+  });
+  return "<div class=\"slide__content podium\">\n            ".concat(users.slice(0, 5).map(function (user, ix) {
+    return PersonComponent({
+      srcSuffix: user.avatar,
+      name: user.name,
+      score: user.valueText,
+      place: ix + 1,
+      emoji: emoji,
+      selectedUser: selectedUser
+    });
+  }).join(''), "\n        </div>");
+}
+;// CONCATENATED MODULE: ./src/components/vote.js
+function vote_PersonComponent(_ref) {
+  var srcSuffix = _ref.srcSuffix,
+      name = _ref.name,
+      selected = _ref.selected;
+  return "<div class=\"vote__item ".concat(selected ? 'vote__item--selected' : '', "\">\n            <div class=\"vote__item__awards\">").concat(selected ? '👍' : '', "</div>\n            <div class=\"vote__item__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"vote__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"vote__item__name\">").concat(name, "</div>\n        </div>");
+}
+
+function ArrowComponent(_ref2) {
+  var direction = _ref2.direction,
+      selected = _ref2.selected;
+  var directionModifier = direction == 'up' ? '--up' : '--down';
+  return "<svg \n            width=\"64\" \n            height=\"64\" \n            class=\"vote__arrow vote__arrow".concat(directionModifier, " ").concat(selected === true ? 'vote__arrow--selected' : '', "\" \n            viewBox=\"0 0 64 64\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\">\n                <path \n                    fill-rule=\"evenodd\" \n                    clip-rule=\"evenodd\" \n                    d=\"M32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62C48.5685 62 62 48.5685 62 32C62 15.4315 48.5685 2 32 2ZM32 -2.79753e-06C14.3269 -4.34256e-06 4.34256e-06 14.3269 2.79753e-06 32C1.2525e-06 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 -1.2525e-06 32 -2.79753e-06ZM4.99999 32C4.99999 17.0883 17.0883 4.99999 32 4.99999C46.9117 4.99999 59 17.0883 59 32C59 46.9117 46.9117 59 32 59C17.0883 59 4.99999 46.9117 4.99999 32ZM38.9393 36.0607C39.5251 36.6464 40.4749 36.6464 41.0607 36.0607C41.6464 35.4749 41.6464 34.5251 41.0607 33.9393L33.0607 25.9393C32.4749 25.3536 31.5251 25.3536 30.9393 25.9393L22.9393 33.9393C22.3536 34.5251 22.3536 35.4749 22.9393 36.0607C23.5251 36.6464 24.4749 36.6464 25.0607 36.0607L32 29.1213L38.9393 36.0607Z\" \n                />\n        </svg>");
+}
+
+function VoteComponent(emoji, selectedUserId, data) {
+  var renderPersonComponent = function renderPersonComponent(user) {
+    return vote_PersonComponent({
+      srcSuffix: user.avatar,
+      name: user.name,
+      selected: user.id === selectedUserId
+    });
+  };
+
+  return "<div class=\"slide__content vote\">\n            <div class=\"slide__row slide__row--left\">\n                ".concat(renderPersonComponent(data[0]), "\n                ").concat(renderPersonComponent(data[3]), "\n                ").concat(renderPersonComponent(data[6]), "\n            </div>\n            <div class=\"slide__row slide__row--middle\">\n                ").concat(ArrowComponent({
+    direction: 'up',
+    selected: false
+  }), "\n                ").concat(renderPersonComponent(data[1]), "\n                ").concat(renderPersonComponent(data[4]), "\n                ").concat(ArrowComponent({
+    direction: 'down',
+    selected: true
+  }), "\n            </div>\n            <div class=\"slide__row slide__row--right\">\n                ").concat(renderPersonComponent(data[2]), "\n                ").concat(renderPersonComponent(data[5]), "\n                ").concat(renderPersonComponent(data[7]), "\n            </div>\n        </div>");
+}
+;// CONCATENATED MODULE: ./src/components/chart.js
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && Symbol.iterator in Object(iter)) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _createForOfIteratorHelper(o, allowArrayLike) { var it; if (typeof Symbol === "undefined" || o[Symbol.iterator] == null) { if (Array.isArray(o) || (it = _unsupportedIterableToArray(o)) || allowArrayLike && o && typeof o.length === "number") { if (it) o = it; var i = 0; var F = function F() {}; return { s: F, n: function n() { if (i >= o.length) return { done: true }; return { done: false, value: o[i++] }; }, e: function e(_e2) { throw _e2; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var normalCompletion = true, didErr = false, err; return { s: function s() { it = o[Symbol.iterator](); }, n: function n() { var step = it.next(); normalCompletion = step.done; return step; }, e: function e(_e3) { didErr = true; err = _e3; }, f: function f() { try { if (!normalCompletion && it["return"] != null) it["return"](); } finally { if (didErr) throw err; } } }; }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function ChartItem(_ref) {
+  var value = _ref.value,
+      title = _ref.title,
+      isCurrent = _ref.isCurrent,
+      maxValue = _ref.maxValue;
+  var minHeight = value / maxValue * (70 - 3.3);
+  minHeight = minHeight < 1 ? '8px' : "".concat(minHeight, "%");
+  return "<div class=\"chart__item ".concat(isCurrent ? 'chart__item--active' : '', "\">\n            <div class=\"chart__item__value\">").concat(value > 0 ? value : '', "</div>\n            <div class=\"chart__item__bar\" style=\"min-height:").concat(minHeight, "\"></div>\n            <div class=\"chart__item__title\">").concat(title, "</div>\n        </div>");
+}
+
+function ChartList(values) {
+  var activeIndex;
+
+  var _iterator = _createForOfIteratorHelper(values.entries()),
+      _step;
+
+  try {
+    for (_iterator.s(); !(_step = _iterator.n()).done;) {
+      var _step$value = _slicedToArray(_step.value, 2),
+          ix = _step$value[0],
+          el = _step$value[1];
+
+      if (el.hasOwnProperty('active') && el.active === true) {
+        activeIndex = ix;
+        break;
+      }
+    } // console.log(activeIndex)
+
+  } catch (err) {
+    _iterator.e(err);
+  } finally {
+    _iterator.f();
+  }
+
+  var leftLimit = Math.max(activeIndex - 6, 0);
+  var rightLimit = Math.min(activeIndex + 2, values.length); // console.log(values.slice(leftLimit, rightLimit + 1))
+
+  var relevantValues = values.slice(leftLimit, rightLimit + 1);
+  var maxValue = Math.max.apply(Math, _toConsumableArray(relevantValues.map(function (el) {
+    return el.value;
+  })));
+  var output = relevantValues.map(function (el, ix) {
+    return ChartItem({
+      value: el.value,
+      title: el.title,
+      isCurrent: el.hasOwnProperty('active'),
+      maxValue: maxValue
+    });
+  }).join('');
+  return "<div class=\"chart__list\">".concat(output, "</div>");
+}
+
+function LeadersItem(_ref2) {
+  var srcSuffix = _ref2.srcSuffix,
+      name = _ref2.name,
+      value = _ref2.value;
+  return "<div class=\"chart__person\">\n            <div class=\"chart__person__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/".concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"chart__person__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"chart__person__meta\">\n                <div class=\"chart__person__name\">").concat(name, "</div>\n                <div class=\"chart__person__value\">").concat(value, "</div>\n            </div>\n        </div>");
+}
+
+function LeadersList(users) {
+  var separator = "<div class=\"chart__leaders__separator\"></div>";
+  var leaders = users.slice(0, 2).map(function (user) {
+    return LeadersItem({
+      srcSuffix: user.avatar,
+      name: user.name,
+      value: user.valueText
+    });
+  }).join(separator);
+  return "<div class=\"chart__leaders\">".concat(leaders, "</div>");
+}
+
+function ChartComponent(values, users) {
+  var leaders = LeadersList(users);
+  var chart = ChartList(values);
+  return "<div class=\"slide__content chart\">\n            ".concat(chart, "\n            ").concat(leaders, "\n        </div>");
+}
+;// CONCATENATED MODULE: ./src/components/diagram.js
+function DonutComponent(total, diff, categories) {
+  var values = categories.map(function (category) {
+    return category.valueText;
+  });
+  var totalValue = donutChunks.reduce(function (acc, current) {
+    return acc + current;
+  }, 0);
+  var donutChunks = values.map(function (value) {
+    return value / totalValue;
+  });
+  return "<div class=\"diagram__donut\">\n        </div>";
+}
+
+function LegendItem(_ref) {
+  var title = _ref.title,
+      value = _ref.value,
+      difference = _ref.difference;
+  return "<div class=\"legend__item\">\n            <div class=\"legend__item__indicator\"></div>\n            <div class=\"legend__item__title\">".concat(title, "</div>\n            <div class=\"legend__item__values\">\n                <div class=\"legend__item__diff\">").concat(difference.slice(0, difference.indexOf(' ')), "</div>\n                <div class=\"legend__item__total\">").concat(value.slice(0, difference.indexOf(' ')), "</div>\n            </div>\n        </div>");
+}
+
+function LegendComponent(categories) {
+  var separator = "<div class=\"diagram__legend__separator\"></div>";
+  var output = categories.map(function (category) {
+    return LegendItem({
+      title: category.title,
+      value: category.valueText,
+      difference: category.differenceText
+    });
+  }).join(separator);
+  return "<div class=\"diagram__legend\">".concat(output, "</div>");
+}
+
+function DiagramComponent(total, diff, categories) {
+  // const chart = DonutComponent(values)
+  return "<div class=\"slide__content diagram\">\n            ".concat(DonutComponent(total, diff, categories), "\n            ").concat(LegendComponent(categories), "\n        </div>");
+}
+;// CONCATENATED MODULE: ./src/components/activity.js
+function HeatmapRowComponent(rowData, index) {
+  var magicNumber = 16.7;
+  return "<div class=\"heatmap__row\" style=\"bottom: ".concat(magicNumber * (23 - index), "px;\">\n            ").concat(rowData.join(''), "\n        </div>");
+}
+
+function HeatmapImageComponent(activity) {
+  var size = activity == 0 ? 'min' : activity <= 2 ? 'mid' : activity <= 4 ? 'max' : 'extra';
+  return "<div class=\"heatmap__element\">\n            <img class=\"heatmap__image\" src=\"./images/".concat(size, "-").concat(theme, ".svg\" />\n        </div>");
+}
+
+function generateHourData(data) {
+  var hourData = [];
+  var days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
+
+  var _loop = function _loop() {
+    var day = _days[_i];
+    var dayData = [];
+    data[day].map(function (activity, index) {
+      if (index % 2 == 1) {
+        dayData[dayData.length - 1] += activity;
+      } else {
+        dayData.push(activity);
+      }
+    });
+    var dayImages = dayData.map(function (value) {
+      return HeatmapImageComponent(value);
+    });
+    var heatmapGap = '<div class="heatmap__gap"></div>';
+
+    if (days.indexOf(day) % 2 == 0) {
+      dayImages.push(heatmapGap);
+    } else {
+      dayImages.unshift(heatmapGap);
+    }
+
+    hourData.push(dayImages);
+  };
+
+  for (var _i = 0, _days = days; _i < _days.length; _i++) {
+    _loop();
+  }
+
+  return hourData;
+}
+
+function generateDayData(data) {
+  var dayData = [];
+
+  for (var i = 0; i < 24; i++) {
+    var hourData = [data.mon[i], data.tue[i], data.wed[i], data.thu[i], data.fri[i], data.sat[i], data.sun[i]];
+    var hourImages = hourData.map(function (value) {
+      return HeatmapImageComponent(value);
+    });
+    var heatmapGap = '<div class="heatmap__gap"></div>';
+
+    if (i % 2 == 0) {
+      hourImages.push(heatmapGap);
+    } else {
+      hourImages.unshift(heatmapGap);
+    }
+
+    dayData.push(hourImages);
+  }
+
+  return dayData;
+}
+
+function HeatmapComponent(data, orientation) {
+  var heatMapData = [];
+
+  if (orientation.startsWith('landscape')) {
+    heatMapData = generateHourData(data);
+  } else {
+    heatMapData = generateDayData(data);
+  }
+
+  return "<div class=\"activity__heatmap\">\n            ".concat(heatMapData.map(function (el, ix) {
+    return HeatmapRowComponent(el, ix);
+  }).join(''), "\n        </div>");
+}
+
+function activity_LegendComponent(theme, orientation) {
+  var sliderUnitSrc = "./images/slider-unit-".concat(theme, ".svg");
+  return "<div class=\"activity__legend\">\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic\">\n                    <img src=".concat(sliderUnitSrc, " />\n                </div>\n                <div class=\"activity__legend__text\">").concat(orientation.startsWith('landscape') ? '2 часа' : '1 час', "</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--min\"></div>\n                <div class=\"activity__legend__text\">0</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--mid\"></div>\n                <div class=\"activity__legend__text\">1\u2009\u2014\u20092</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--max\"></div>\n                <div class=\"activity__legend__text\">3\u2009\u2014\u20094</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--extra\"></div>\n                <div class=\"activity__legend__text\">5\u2009\u2014\u20096</div>\n            </div>\n        </div>");
+}
+
+function ActivityComponent(data) {
+  var theme = document.body.className.substr(6); // why not 5??
+
+  var orientation = window.screen.orientation.type;
+  document.addEventListener('orientationchange', function () {
+    location.reload();
+  });
+  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, orientation), "\n            ").concat(activity_LegendComponent(theme, orientation), "\n        </div>");
+}
+;// CONCATENATED MODULE: ./src/stories.js
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+window.renderTemplate = function (alias, data) {
+  var content;
+
+  if (alias == 'leaders') {
+    content = LeadersComponent(data.emoji, data.users, data.selectedUserId);
+  } else if (alias == 'vote') {
+    content = VoteComponent(data.emoji, data.selectedUserId, data.users);
+  } else if (alias == 'chart') {
+    content = ChartComponent(data.values, data.users);
+  } else if (alias == 'diagram') {
+    content = DiagramComponent(data.totalText, data.differenceText, data.categories);
+  } else if (alias == 'activity') {
+    content = ActivityComponent(data);
+  }
+
+  return "<div class=\"slide\">\n            <div class=\"slide__heading\">".concat(data.title, "</div>\n            <div class=\"slide__subhead\">").concat(data.subtitle, "</div>\n            ").concat(content, "\n        </div>");
+};
+/******/ })()
+;

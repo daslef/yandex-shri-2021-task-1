@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="stories.css">
 </head>
 <body class="theme_dark">
-    <script type="text/javascript" src="stories.js"></script>
+    <script src="stories.js"></script>
     <script>
         const body = document.querySelector('body');
 
@@ -16,12 +16,12 @@
         const slideNumber = urlParams.get('slide') || 0;
 
         const theme = urlParams.get('theme') || 'dark';
-        body.className = `theme_${theme}`
+        body.className = `theme_${theme}`;
 
         fetch(`/api/data/${slideNumber}`)
             .then(res => res.json())
             .then(json => {
-                const {alias, data} = json
+                const {alias, data} = json;
                 body.innerHTML = window.renderTemplate(alias, data);
             })
             .catch(err => console.log(err));
