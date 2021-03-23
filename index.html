@@ -1,0 +1,30 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Шаблоны Stories</title>
+    <link rel="stylesheet" href="stories.css">
+</head>
+<body class="theme_dark">
+    <script type="text/javascript" src="stories.js"></script>
+    <script>
+        const body = document.querySelector('body');
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const slideNumber = urlParams.get('slide') || 0;
+
+        const theme = urlParams.get('theme') || 'dark';
+        body.className = `theme_${theme}`
+
+        fetch(`/api/data/${slideNumber}`)
+            .then(res => res.json())
+            .then(json => {
+                const {alias, data} = json
+                body.innerHTML = window.renderTemplate(alias, data);
+            })
+            .catch(err => console.log(err));
+
+    </script>
+</body>
+</html>

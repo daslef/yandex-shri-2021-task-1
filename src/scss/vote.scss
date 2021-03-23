@@ -1,0 +1,115 @@
+@import '_media.scss';
+
+.slide__row {
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    &--left, &--right {
+        justify-content: space-between;
+        padding-top: 2px;
+        padding-bottom: 2px;
+    }
+
+    &--middle {
+        justify-content: space-between;
+        height: 100%;
+    }
+}
+
+.vote {
+    flex: 1;
+    display: flex;
+    justify-content: space-between;
+    max-height: 526px;
+    width: 100%;
+    margin: 23px auto 0;
+
+    @include _landscape_668 {
+        margin-top: 5px;
+    }
+}
+
+.vote__item {
+    width: 104px;
+    height: 142px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 6px;
+    position: relative;
+
+    &__pic {
+        margin-top: 20px;
+        width: 64px;
+        height: 64px;
+        border-radius: 100px;
+    }
+
+    &__photo {
+        border-radius: 50%;
+        height: 64px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        filter: var(--filter);
+    }
+    
+    &__name {
+        margin: 6px 4px;
+        font-family: 'Roboto Medium';
+        font-size: 16px;
+        line-height: 18px;
+        text-align: center;
+    }
+
+    &__awards {
+        position: absolute;
+        font-size: 32px;
+        line-height: 32px;
+        font-family: 'Roboto Bold';        
+        top: -4px;
+        z-index: 1;
+    }
+
+    &--selected {
+        background: var(--person-accent-background);
+        box-shadow: var(--person-accent-shadow);
+        filter: var(--no-filter);
+    }
+
+    &:hover {
+        background: var(--person-hover-background);
+        box-shadow: var(--person-hover-shadow);
+    }
+}
+
+.vote__arrow {
+
+    filter: var(--filter);
+
+    &--up {
+    }
+
+    &--down {
+        transform: rotate(180deg);
+    }
+
+    & > path {
+        fill: var(--vote-button-background);
+    }
+
+    &--selected {
+        & > path {
+            fill: var(--vote-button-hover-background);
+        }
+    }
+
+    &:hover, &:disabled {
+
+        & > path {
+            fill: var(--vote-button-hover-background);
+        }
+    }
+}
