@@ -2,7 +2,7 @@ function DonutComponent(total, diff, categories) {
 
     const values = categories.map(category => category.valueText)
 
-    const totalValue = donutChunks.reduce((acc, current) => acc + current, 0)
+    const totalValue = values.reduce((acc, current) => acc + current, 0)
     const donutChunks = values.map(value => value / totalValue)
 
     return (

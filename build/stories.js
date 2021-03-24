@@ -179,8 +179,7 @@ function ChartList(values) {
         activeIndex = ix;
         break;
       }
-    } // console.log(activeIndex)
-
+    }
   } catch (err) {
     _iterator.e(err);
   } finally {
@@ -188,8 +187,7 @@ function ChartList(values) {
   }
 
   var leftLimit = Math.max(activeIndex - 6, 0);
-  var rightLimit = Math.min(activeIndex + 2, values.length); // console.log(values.slice(leftLimit, rightLimit + 1))
-
+  var rightLimit = Math.min(activeIndex + 2, values.length);
   var relevantValues = values.slice(leftLimit, rightLimit + 1);
   var maxValue = Math.max.apply(Math, _toConsumableArray(relevantValues.map(function (el) {
     return el.value;
@@ -234,7 +232,7 @@ function DonutComponent(total, diff, categories) {
   var values = categories.map(function (category) {
     return category.valueText;
   });
-  var totalValue = donutChunks.reduce(function (acc, current) {
+  var totalValue = values.reduce(function (acc, current) {
     return acc + current;
   }, 0);
   var donutChunks = values.map(function (value) {

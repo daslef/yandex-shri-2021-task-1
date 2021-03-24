@@ -23,13 +23,9 @@ function ChartList(values) {
             break
         }
     }
-
-    // console.log(activeIndex)
     
     const leftLimit = Math.max(activeIndex - 6, 0)
     const rightLimit = Math.min(activeIndex + 2, values.length)
-
-    // console.log(values.slice(leftLimit, rightLimit + 1))
 
     const relevantValues = values.slice(leftLimit, rightLimit + 1)
     const maxValue = Math.max(...relevantValues.map(el => el.value))
