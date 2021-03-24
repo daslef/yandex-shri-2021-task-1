@@ -83,7 +83,7 @@ function HeatmapComponent(data, orientation) {
 
     let heatMapData = [];
 
-    if (orientation.startsWith('landscape')) {
+    if (orientation == 'landscape') {
         heatMapData = generateHourData(data);
     } else {
         heatMapData = generateDayData(data);
@@ -107,7 +107,7 @@ function LegendComponent(theme, orientation) {
                 <div class="activity__legend__pic">
                     <img src=${sliderUnitSrc} />
                 </div>
-                <div class="activity__legend__text">${orientation.startsWith('landscape') ? '2 часа' : '1 час'}</div>
+                <div class="activity__legend__text">${orientation == 'landscape' ? '2 часа' : '1 час'}</div>
             </div>
             <div class="activity__legend__item">
                 <div class="activity__legend__pic activity__legend__pic--min"></div>
@@ -133,11 +133,6 @@ function LegendComponent(theme, orientation) {
 export default function ActivityComponent(data) {
 
     const theme = document.body.className.substr(6) // why not 5??
-    // const orientation = window.screen.orientation.type;
-
-    // document.addEventListener('orientationchange', () => {
-    //     location.reload()
-    // }) 
 
     return (
         `<div class="slide__content activity">

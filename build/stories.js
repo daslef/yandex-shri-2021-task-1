@@ -35,8 +35,7 @@ function PersonComponent(_ref) {
       emoji = _ref.emoji,
       selectedUser = _ref.selectedUser,
       orientation = _ref.orientation;
-  var barSizeModifier = place >= 4 ? '-small' : place >= 2 ? '-medium' : '-large'; // const orientation = window.screen.orientation.type;
-
+  var barSizeModifier = place >= 4 ? '-small' : place >= 2 ? '-medium' : '-large';
   var selectedPerson;
 
   if (orientation.startsWith('portrait') && place == 1 && (selectedUser === null || selectedUser === void 0 ? void 0 : selectedUser.index) > 2) {
@@ -75,10 +74,7 @@ function LeadersComponent(emoji, users, selectedUsedId) {
     selectedUser = _objectSpread(_objectSpread({}, users[selectedUserIndex]), {}, {
       index: selectedUserIndex
     });
-  } // document.addEventListener('orientationchange', () => {
-  //     location.reload()
-  // }) 
-
+  }
 
   return "<div class=\"slide__content podium podium--landscape\">\n            ".concat(users.slice(0, 5).map(function (user, ix) {
     return PersonComponent({
@@ -341,7 +337,7 @@ function generateDayData(data) {
 function HeatmapComponent(data, orientation) {
   var heatMapData = [];
 
-  if (orientation.startsWith('landscape')) {
+  if (orientation == 'landscape') {
     heatMapData = generateHourData(data);
   } else {
     heatMapData = generateDayData(data);
@@ -354,15 +350,11 @@ function HeatmapComponent(data, orientation) {
 
 function activity_LegendComponent(theme, orientation) {
   var sliderUnitSrc = "./images/slider-unit-".concat(theme, ".svg");
-  return "<div class=\"activity__legend activity__legend--".concat(orientation, "\">\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic\">\n                    <img src=").concat(sliderUnitSrc, " />\n                </div>\n                <div class=\"activity__legend__text\">").concat(orientation.startsWith('landscape') ? '2 часа' : '1 час', "</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--min\"></div>\n                <div class=\"activity__legend__text\">0</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--mid\"></div>\n                <div class=\"activity__legend__text\">1\u2009\u2014\u20092</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--max\"></div>\n                <div class=\"activity__legend__text\">3\u2009\u2014\u20094</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--extra\"></div>\n                <div class=\"activity__legend__text\">5\u2009\u2014\u20096</div>\n            </div>\n        </div>");
+  return "<div class=\"activity__legend activity__legend--".concat(orientation, "\">\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic\">\n                    <img src=").concat(sliderUnitSrc, " />\n                </div>\n                <div class=\"activity__legend__text\">").concat(orientation == 'landscape' ? '2 часа' : '1 час', "</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--min\"></div>\n                <div class=\"activity__legend__text\">0</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--mid\"></div>\n                <div class=\"activity__legend__text\">1\u2009\u2014\u20092</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--max\"></div>\n                <div class=\"activity__legend__text\">3\u2009\u2014\u20094</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--extra\"></div>\n                <div class=\"activity__legend__text\">5\u2009\u2014\u20096</div>\n            </div>\n        </div>");
 }
 
 function ActivityComponent(data) {
   var theme = document.body.className.substr(6); // why not 5??
-  // const orientation = window.screen.orientation.type;
-  // document.addEventListener('orientationchange', () => {
-  //     location.reload()
-  // }) 
 
   return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'landscape'), "\n            ").concat(HeatmapComponent(data.data, 'portrait'), "\n            ").concat(activity_LegendComponent(theme, 'landscape'), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
 }

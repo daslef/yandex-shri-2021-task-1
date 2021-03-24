@@ -27,8 +27,6 @@ function PersonComponent({ srcSuffix, name, score, place, emoji, selectedUser, o
 
     const barSizeModifier = (place >= 4) ? '-small' : (place >= 2) ? '-medium' : '-large';
 
-    // const orientation = window.screen.orientation.type;
-
     let selectedPerson;
     if (orientation.startsWith('portrait') && place == 1 && selectedUser?.index > 2) {
         selectedPerson = PersonCardEmbedded(selectedUser)
@@ -71,10 +69,6 @@ export default function LeadersComponent(emoji, users, selectedUsedId) {
         const selectedUserIndex = users.map(object => object.id).indexOf(selectedUsedId)
         selectedUser = { ...users[selectedUserIndex], index: selectedUserIndex }
     }
-
-    // document.addEventListener('orientationchange', () => {
-    //     location.reload()
-    // }) 
 
     return (
         `<div class="slide__content podium podium--landscape">
