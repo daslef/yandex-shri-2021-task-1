@@ -10,8 +10,29 @@
 
     margin-bottom: -23px;
 
+    &--landscape {
+        display: none;
+    }
+
+    &--portrait {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+    
+        margin-bottom: -23px;
+    }
+
     @include _landscape_668 {
         padding: 0 42px;
+
+        &--portrait {
+            display: none;
+        }
+
+        &--landscape {
+            display: flex;
+        }
     }
 
 }

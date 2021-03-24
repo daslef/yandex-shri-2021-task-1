@@ -23,12 +23,30 @@
     margin-bottom: 50px;
     justify-content: center;
     position: relative;
+
+    &--landscape {
+        display: none;
+    }
+
+    &--portrait {
+        display: flex;
+        margin-bottom: 46px;
+    }
+
     @include _landscape_668 {
         margin-bottom: 32px;
+        &--portrait {
+            display: none;
+        }
+        &--landscape {
+            display: flex;
+        }
         // flex-direction: row;
         // justify-content: flex-start;
     }
 }
+
+
 
 .heatmap__row {
     display: flex;
@@ -92,7 +110,21 @@
 
     height: 38px;
 
+    &--landscape {
+        display: none;
+    }
+
+    &--portrait {
+        display: flex;
+    }
+
     @include _landscape_668 {
+        &--portrait {
+            display: none;
+        }
+        &--landscape {
+            display: flex;
+        } 
         justify-content: center;
     }
 
@@ -116,6 +148,7 @@
     &__pic {
         min-height: 12px;
         border-radius: 2px;
+        display: flex;
 
         &--min {
             background: var(--activity-slider-min-background);

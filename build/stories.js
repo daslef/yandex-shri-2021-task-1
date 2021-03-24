@@ -33,9 +33,10 @@ function PersonComponent(_ref) {
       score = _ref.score,
       place = _ref.place,
       emoji = _ref.emoji,
-      selectedUser = _ref.selectedUser;
-  var barSizeModifier = place >= 4 ? '-small' : place >= 2 ? '-medium' : '-large';
-  var orientation = window.screen.orientation.type;
+      selectedUser = _ref.selectedUser,
+      orientation = _ref.orientation;
+  var barSizeModifier = place >= 4 ? '-small' : place >= 2 ? '-medium' : '-large'; // const orientation = window.screen.orientation.type;
+
   var selectedPerson;
 
   if (orientation.startsWith('portrait') && place == 1 && (selectedUser === null || selectedUser === void 0 ? void 0 : selectedUser.index) > 2) {
@@ -74,19 +75,30 @@ function LeadersComponent(emoji, users, selectedUsedId) {
     selectedUser = _objectSpread(_objectSpread({}, users[selectedUserIndex]), {}, {
       index: selectedUserIndex
     });
-  }
+  } // document.addEventListener('orientationchange', () => {
+  //     location.reload()
+  // }) 
 
-  document.addEventListener('orientationchange', function () {
-    location.reload();
-  });
-  return "<div class=\"slide__content podium\">\n            ".concat(users.slice(0, 5).map(function (user, ix) {
+
+  return "<div class=\"slide__content podium podium--landscape\">\n            ".concat(users.slice(0, 5).map(function (user, ix) {
     return PersonComponent({
       srcSuffix: user.avatar,
       name: user.name,
       score: user.valueText,
       place: ix + 1,
       emoji: emoji,
-      selectedUser: selectedUser
+      selectedUser: selectedUser,
+      orientation: 'landscape'
+    });
+  }).join(''), "\n        </div>\n        <div class=\"slide__content podium--portrait\">\n        ").concat(users.slice(0, 5).map(function (user, ix) {
+    return PersonComponent({
+      srcSuffix: user.avatar,
+      name: user.name,
+      score: user.valueText,
+      place: ix + 1,
+      emoji: emoji,
+      selectedUser: selectedUser,
+      orientation: 'portrait'
     });
   }).join(''), "\n        </div>");
 }
@@ -335,24 +347,24 @@ function HeatmapComponent(data, orientation) {
     heatMapData = generateDayData(data);
   }
 
-  return "<div class=\"activity__heatmap\">\n            ".concat(heatMapData.map(function (el, ix) {
+  return "<div class=\"activity__heatmap activity__heatmap--".concat(orientation, "\">\n            ").concat(heatMapData.map(function (el, ix) {
     return HeatmapRowComponent(el, ix);
   }).join(''), "\n        </div>");
 }
 
 function activity_LegendComponent(theme, orientation) {
   var sliderUnitSrc = "./images/slider-unit-".concat(theme, ".svg");
-  return "<div class=\"activity__legend\">\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic\">\n                    <img src=".concat(sliderUnitSrc, " />\n                </div>\n                <div class=\"activity__legend__text\">").concat(orientation.startsWith('landscape') ? '2 часа' : '1 час', "</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--min\"></div>\n                <div class=\"activity__legend__text\">0</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--mid\"></div>\n                <div class=\"activity__legend__text\">1\u2009\u2014\u20092</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--max\"></div>\n                <div class=\"activity__legend__text\">3\u2009\u2014\u20094</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--extra\"></div>\n                <div class=\"activity__legend__text\">5\u2009\u2014\u20096</div>\n            </div>\n        </div>");
+  return "<div class=\"activity__legend activity__legend--".concat(orientation, "\">\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic\">\n                    <img src=").concat(sliderUnitSrc, " />\n                </div>\n                <div class=\"activity__legend__text\">").concat(orientation.startsWith('landscape') ? '2 часа' : '1 час', "</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--min\"></div>\n                <div class=\"activity__legend__text\">0</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--mid\"></div>\n                <div class=\"activity__legend__text\">1\u2009\u2014\u20092</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--max\"></div>\n                <div class=\"activity__legend__text\">3\u2009\u2014\u20094</div>\n            </div>\n            <div class=\"activity__legend__item\">\n                <div class=\"activity__legend__pic activity__legend__pic--extra\"></div>\n                <div class=\"activity__legend__text\">5\u2009\u2014\u20096</div>\n            </div>\n        </div>");
 }
 
 function ActivityComponent(data) {
   var theme = document.body.className.substr(6); // why not 5??
+  // const orientation = window.screen.orientation.type;
+  // document.addEventListener('orientationchange', () => {
+  //     location.reload()
+  // }) 
 
-  var orientation = window.screen.orientation.type;
-  document.addEventListener('orientationchange', function () {
-    location.reload();
-  });
-  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, orientation), "\n            ").concat(activity_LegendComponent(theme, orientation), "\n        </div>");
+  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'landscape'), "\n            ").concat(HeatmapComponent(data.data, 'portrait'), "\n            ").concat(activity_LegendComponent(theme, 'landscape'), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/stories.js
 

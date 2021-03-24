@@ -90,7 +90,7 @@ function HeatmapComponent(data, orientation) {
     }
         
     return (
-        `<div class="activity__heatmap">
+        `<div class="activity__heatmap activity__heatmap--${orientation}">
             ${heatMapData.map((el, ix) => HeatmapRowComponent(el, ix)).join('')}
         </div>`
     )
@@ -102,7 +102,7 @@ function LegendComponent(theme, orientation) {
     const sliderUnitSrc = `./images/slider-unit-${theme}.svg`
 
     return (
-        `<div class="activity__legend">
+        `<div class="activity__legend activity__legend--${orientation}">
             <div class="activity__legend__item">
                 <div class="activity__legend__pic">
                     <img src=${sliderUnitSrc} />
@@ -133,16 +133,18 @@ function LegendComponent(theme, orientation) {
 export default function ActivityComponent(data) {
 
     const theme = document.body.className.substr(6) // why not 5??
-    const orientation = window.screen.orientation.type;
+    // const orientation = window.screen.orientation.type;
 
-    document.addEventListener('orientationchange', () => {
-        location.reload()
-    }) 
+    // document.addEventListener('orientationchange', () => {
+    //     location.reload()
+    // }) 
 
     return (
         `<div class="slide__content activity">
-            ${HeatmapComponent(data.data, orientation)}
-            ${LegendComponent(theme, orientation)}
+            ${HeatmapComponent(data.data, 'landscape')}
+            ${HeatmapComponent(data.data, 'portrait')}
+            ${LegendComponent(theme, 'landscape')}
+            ${LegendComponent(theme, 'portrait')}
         </div>`
     )
 }
