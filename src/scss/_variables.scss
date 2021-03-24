@@ -25,7 +25,9 @@
     --bar-background-light: linear-gradient(180deg, rgba(244, 244, 244, 0.9) 0.82%, #E9E9E9 100%, rgba(234, 234, 234, 0) 100%);
     --bar-background-dark: linear-gradient(180deg, rgba(0, 0, 0, 0) -2.22%, rgba(0, 0, 0, 0.8) 100%), radial-gradient(149.08% 95.38% at 38.75% 71.48%, #000000 0%, #231900 0.01%, #4D4D4D 100%);
     --bar-background-accent-light: linear-gradient(180deg, #FFF2D1 0.82%, #FFD66C 100%);
-    // --bar-background-accent-dark: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #FFA300 0%, #2D1C00 100%); 
+    --bar-background-leaders-accent-light: linear-gradient(180deg, #FFF2D1 0.82%, #FFD66C 100%);
+    --bar-background-leaders-accent-dark: radial-gradient(91.67% 122.17% at 69.17% -11.17%, #FFA300 0%, #2D1C00 100%); 
+    --bar-background-accent-dark: radial-gradient(81.14% 100% at 50% 0%, #FFA300 0%, #2D1C00 100%);
     --bar-background-accent-dark: radial-gradient(81.14% 100% at 50% 0%, #FFA300 0%, #2D1C00 100%);
 
     --bar-shadow-light: inset -1px 1px 1px rgba(255, 255, 255, 0.5), inset 0px 0px 20px rgba(207, 207, 207, 0.5);
@@ -62,6 +64,8 @@
 
     --bar-background: var(--bar-background-light);
     --bar-background-accent: var(--bar-background-accent-light);
+    --bar-background-leaders-accent: var(--bar-background-leaders-accent-light);  
+
     --bar-shadow: var(--bar-shadow-light);
     --bar-shadow-accent: var(--bar-shadow-accent-light);
 
@@ -98,7 +102,8 @@
     --background-color: var(--background-dark);
 
     --bar-background: var(--bar-background-dark);
-    --bar-background-accent: var(--bar-background-accent-dark);  
+    --bar-background-accent: var(--bar-background-accent-dark);
+    --bar-background-leaders-accent: var(--bar-background-leaders-accent-dark);  
     --bar-shadow: var(--bar-shadow-dark);
     --bar-shadow-accent: var(--bar-shadow-accent-dark);
 
