@@ -136,9 +136,7 @@ export default function ActivityComponent(data) {
 
     return (
         `<div class="slide__content activity">
-            ${HeatmapComponent(data.data, 'landscape')}
             ${HeatmapComponent(data.data, 'portrait')}
-            ${LegendComponent(theme, 'landscape')}
             ${LegendComponent(theme, 'portrait')}
         </div>`
     )

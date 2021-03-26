@@ -389,7 +389,7 @@ function activity_LegendComponent(theme, orientation) {
 function ActivityComponent(data) {
   var theme = document.body.className.substr(6); // why not 5??
 
-  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'landscape'), "\n            ").concat(HeatmapComponent(data.data, 'portrait'), "\n            ").concat(activity_LegendComponent(theme, 'landscape'), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
+  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'portrait'), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/stories.js
 
