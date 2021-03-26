@@ -46,7 +46,7 @@ export default function VoteComponent(emoji, selectedUserId, data) {
     }
     
     return (
-        `<div class="slide__content vote">
+        `<div class="slide__content vote vote--portrait">
             <div class="slide__row slide__row--left">
                 ${renderPersonComponent(data[0])}
                 ${renderPersonComponent(data[3])}
@@ -63,6 +63,28 @@ export default function VoteComponent(emoji, selectedUserId, data) {
                 ${renderPersonComponent(data[5])}
                 ${renderPersonComponent(data[7])}
             </div>
+        </div>
+
+        <div class="slide__content vote vote--landscape">
+            <div class="slide__column slide__column--1">
+                ${renderPersonComponent(data[0])}
+            </div>
+            <div class="slide__column slide__column--2">
+                ${renderPersonComponent(data[1])}
+                ${renderPersonComponent(data[4])}
+            </div>
+            <div class="slide__column slide__column--3">
+                ${ArrowComponent({direction: 'up', selected: false})}
+                ${ArrowComponent({direction: 'down', selected: true})}
+            </div>
+            <div class="slide__column slide__column--4">
+                ${renderPersonComponent(data[2])}
+                ${renderPersonComponent(data[5])}
+            </div>
+            <div class="slide__column slide__column--5">
+                ${renderPersonComponent(data[3])}
+            </div>
         </div>`
+
     )
 }

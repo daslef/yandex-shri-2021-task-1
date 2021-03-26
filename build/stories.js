@@ -122,13 +122,19 @@ function VoteComponent(emoji, selectedUserId, data) {
     });
   };
 
-  return "<div class=\"slide__content vote\">\n            <div class=\"slide__row slide__row--left\">\n                ".concat(renderPersonComponent(data[0]), "\n                ").concat(renderPersonComponent(data[3]), "\n                ").concat(renderPersonComponent(data[6]), "\n            </div>\n            <div class=\"slide__row slide__row--middle\">\n                ").concat(ArrowComponent({
+  return "<div class=\"slide__content vote vote--portrait\">\n            <div class=\"slide__row slide__row--left\">\n                ".concat(renderPersonComponent(data[0]), "\n                ").concat(renderPersonComponent(data[3]), "\n                ").concat(renderPersonComponent(data[6]), "\n            </div>\n            <div class=\"slide__row slide__row--middle\">\n                ").concat(ArrowComponent({
     direction: 'up',
     selected: false
   }), "\n                ").concat(renderPersonComponent(data[1]), "\n                ").concat(renderPersonComponent(data[4]), "\n                ").concat(ArrowComponent({
     direction: 'down',
     selected: true
-  }), "\n            </div>\n            <div class=\"slide__row slide__row--right\">\n                ").concat(renderPersonComponent(data[2]), "\n                ").concat(renderPersonComponent(data[5]), "\n                ").concat(renderPersonComponent(data[7]), "\n            </div>\n        </div>");
+  }), "\n            </div>\n            <div class=\"slide__row slide__row--right\">\n                ").concat(renderPersonComponent(data[2]), "\n                ").concat(renderPersonComponent(data[5]), "\n                ").concat(renderPersonComponent(data[7]), "\n            </div>\n        </div>\n\n        <div class=\"slide__content vote vote--landscape\">\n            <div class=\"slide__column slide__column--1\">\n                ").concat(renderPersonComponent(data[0]), "\n            </div>\n            <div class=\"slide__column slide__column--2\">\n                ").concat(renderPersonComponent(data[1]), "\n                ").concat(renderPersonComponent(data[4]), "\n            </div>\n            <div class=\"slide__column slide__column--3\">\n                ").concat(ArrowComponent({
+    direction: 'up',
+    selected: false
+  }), "\n                ").concat(ArrowComponent({
+    direction: 'down',
+    selected: true
+  }), "\n            </div>\n            <div class=\"slide__column slide__column--4\">\n                ").concat(renderPersonComponent(data[2]), "\n                ").concat(renderPersonComponent(data[5]), "\n            </div>\n            <div class=\"slide__column slide__column--5\">\n                ").concat(renderPersonComponent(data[3]), "\n            </div>\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/components/chart.js
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }

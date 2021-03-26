@@ -18,6 +18,21 @@
     }
 }
 
+.slide__column {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &--2 > .vote__item:first-child, &--4 .vote__item:first-child {
+        margin-bottom: 4px;
+    }
+
+    &--3 > .vote__arrow:first-child {
+        margin-bottom: 56px;
+    }
+}
+
 .vote {
     flex: 1;
     display: flex;
@@ -26,8 +41,20 @@
     width: 100%;
     margin: 23px auto 0;
 
+    &--landscape {
+        display: none;
+    }
+
     @include _landscape_668 {
+        &--landscape {
+            display: flex;
+        }
+        &--portrait {
+            display: none;
+        }
         margin-top: 5px;
+        padding-left: 8px;
+        padding-right: 8px;
     }
 }
 
