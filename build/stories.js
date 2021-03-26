@@ -239,8 +239,8 @@ function DonutComponent(total, diff, categories) {
     gradients: ["paint0_radial", "paint1_radial", "paint2_radial", "paint3_radial"],
     cx: 80,
     cy: 80,
-    radius: 67,
-    strokeWidth: 25
+    radius: 68,
+    strokeWidth: 24
   };
   var values = categories.map(function (category) {
     return category.valueText;
@@ -269,7 +269,7 @@ function DonutComponent(total, diff, categories) {
 
 
   var donutChunkElement = function donutChunkElement(index, value) {
-    return "<g>\n            <circle\n                fill=\"transparent\" \n                cx=\"".concat(SETTINGS.cx, "\"\n                cy=\"").concat(SETTINGS.cy, "\"\n                r=\"").concat(SETTINGS.radius, "\"\n                stroke=\"url(#").concat(SETTINGS.gradients[index], ")\"\n                stroke-width=\"").concat(SETTINGS.strokeWidth, "\"\n                stroke-dasharray=\"").concat(l - 2, "\"\n                stroke-dashoffset=\"").concat(offset(value), "\"\n                transform=\"").concat(transform(index), "\"\n            />\n        </g>");
+    return "<g>\n            <circle\n                fill=\"transparent\" \n                cx=\"".concat(SETTINGS.cx, "\"\n                cy=\"").concat(SETTINGS.cy, "\"\n                r=\"").concat(SETTINGS.radius, "\"\n                stroke=\"url(#").concat(SETTINGS.gradients[index], ")\"\n                stroke-width=\"").concat(SETTINGS.strokeWidth, "\"\n                stroke-dasharray=\"").concat(l - 1, "\"\n                stroke-dashoffset=\"").concat(offset(value), "\"\n                transform=\"").concat(transform(index), "\"\n            />\n        </g>");
   };
 
   return "<div class=\"diagram__donut\">\n            <svg viewBox=\"0 0 160 160\" class=\"diagram__donut__svg\">\n                <defs>\n                    <radialGradient id=\"paint0_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(146.486 176.514) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#FFA300\"/>\n                        <stop offset=\"1\" stop-color=\"#5B3A00\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint1_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(-21.5141 84.5141) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.729167\" stop-color=\"#633F00\"/>\n                        <stop offset=\"1\" stop-color=\"#0F0900\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint2_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(127.486 -69.4859) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#9B9B9B\"/>\n                        <stop offset=\"1\" stop-color=\"#382900\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint3_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(175.486 97.5141) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#4D4D4D\"/>\n                        <stop offset=\"1\" stop-color=\"#382900\"/>\n                    </radialGradient>\n                </defs>\n                ".concat(values.map(function (value, ix) {

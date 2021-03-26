@@ -4,8 +4,8 @@ function DonutComponent(total, diff, categories) {
         gradients: ["paint0_radial", "paint1_radial", "paint2_radial", "paint3_radial"],
         cx: 80,
         cy: 80,		      
-        radius: 67,
-        strokeWidth: 25,
+        radius: 68,
+        strokeWidth: 24,
     }
 
     const values = categories
@@ -47,7 +47,7 @@ function DonutComponent(total, diff, categories) {
                 r="${SETTINGS.radius}"
                 stroke="url(#${SETTINGS.gradients[index]})"
                 stroke-width="${SETTINGS.strokeWidth}"
-                stroke-dasharray="${l-2}"
+                stroke-dasharray="${l-1}"
                 stroke-dashoffset="${offset(value)}"
                 transform="${transform(index)}"
             />
