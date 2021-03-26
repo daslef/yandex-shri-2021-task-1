@@ -20,11 +20,9 @@
 
         fetch(`/api/data/${slideNumber}`)
             .then(res => res.json())
-            .then(json => {
-                const {alias, data} = json;
+            .then(({alias, data}) => {
                 body.innerHTML = window.renderTemplate(alias, data);
             })
-            .catch(err => console.log(err));
 
     </script>
 </body>

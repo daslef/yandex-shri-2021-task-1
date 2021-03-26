@@ -235,16 +235,46 @@ function ChartComponent(values, users) {
 }
 ;// CONCATENATED MODULE: ./src/components/diagram.js
 function DonutComponent(total, diff, categories) {
+  var SETTINGS = {
+    gradients: ["paint0_radial", "paint1_radial", "paint2_radial", "paint3_radial"],
+    cx: 80,
+    cy: 80,
+    radius: 67,
+    strokeWidth: 25
+  };
   var values = categories.map(function (category) {
     return category.valueText;
+  }).map(function (category) {
+    var spaceIndex = category.indexOf(' ');
+    return parseInt(category.substring(0, spaceIndex));
   });
-  var totalValue = values.reduce(function (acc, current) {
-    return acc + current;
-  }, 0);
-  var donutChunks = values.map(function (value) {
-    return value / totalValue;
+  var chartData = [];
+  var l = 2 * Math.PI * SETTINGS.radius;
+  var valuesSum = values.reduce(function (acc, val) {
+    return acc + val;
   });
-  return "<div class=\"diagram__donut\">\n        </div>";
+  var angleOffset = -90 - values[0] / valuesSum / 2 * 360;
+  values.map(function (value, index) {
+    chartData.push(angleOffset);
+    angleOffset += value / valuesSum * 360;
+  });
+
+  function offset(value) {
+    return l * (1 - value / valuesSum);
+  }
+
+  function transform(index) {
+    return "rotate(".concat(chartData[index], ", ").concat(SETTINGS.cx, ", ").concat(SETTINGS.cy, ")");
+  } // stroke="${SETTINGS.colors[index]}"
+
+
+  var donutChunkElement = function donutChunkElement(index, value) {
+    return "<g>\n            <circle\n                fill=\"transparent\" \n                cx=\"".concat(SETTINGS.cx, "\"\n                cy=\"").concat(SETTINGS.cy, "\"\n                r=\"").concat(SETTINGS.radius, "\"\n                stroke=\"url(#").concat(SETTINGS.gradients[index], ")\"\n                stroke-width=\"").concat(SETTINGS.strokeWidth, "\"\n                stroke-dasharray=\"").concat(l - 2, "\"\n                stroke-dashoffset=\"").concat(offset(value), "\"\n                transform=\"").concat(transform(index), "\"\n            />\n        </g>");
+  };
+
+  return "<div class=\"diagram__donut\">\n            <svg viewBox=\"0 0 160 160\" class=\"diagram__donut__svg\">\n                <defs>\n                    <radialGradient id=\"paint0_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(146.486 176.514) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#FFA300\"/>\n                        <stop offset=\"1\" stop-color=\"#5B3A00\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint1_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(-21.5141 84.5141) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.729167\" stop-color=\"#633F00\"/>\n                        <stop offset=\"1\" stop-color=\"#0F0900\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint2_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(127.486 -69.4859) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#9B9B9B\"/>\n                        <stop offset=\"1\" stop-color=\"#382900\"/>\n                    </radialGradient>\n                    <radialGradient id=\"paint3_radial\" cx=\"0\" cy=\"0\" r=\"1\" gradientUnits=\"userSpaceOnUse\" gradientTransform=\"translate(175.486 97.5141) rotate(90) scale(163.486)\">\n                        <stop offset=\"0.71875\" stop-color=\"#4D4D4D\"/>\n                        <stop offset=\"1\" stop-color=\"#382900\"/>\n                    </radialGradient>\n                </defs>\n                ".concat(values.map(function (value, ix) {
+    return donutChunkElement(ix, value);
+  }).join(''), "\n            </svg>\n            <div class=\"diagram__donut__text\">\n                <div class=\"diagram__donut__total\">").concat(total, "</div>\n                <div class=\"diagram__donut__diff\">").concat(diff, "</div>\n            </div>\n        </div>");
 }
 
 function LegendItem(_ref) {
@@ -267,7 +297,6 @@ function LegendComponent(categories) {
 }
 
 function DiagramComponent(total, diff, categories) {
-  // const chart = DonutComponent(values)
   return "<div class=\"slide__content diagram\">\n            ".concat(DonutComponent(total, diff, categories), "\n            ").concat(LegendComponent(categories), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/components/activity.js
