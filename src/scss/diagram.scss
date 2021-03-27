@@ -164,3 +164,11 @@
 
     }
 }
+
+.theme_dark .diagram__donut--light {
+    display: none;   
+}
+
+.theme_light .diagram__donut--dark {
+    display: none;
+}

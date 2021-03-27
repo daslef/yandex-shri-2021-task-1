@@ -1,4 +1,4 @@
-function DonutComponent(total, diff, categories, theme) {
+function DonutComponent(total, diff, categories) {
 
     const SETTINGS = {
         cx: 170,
@@ -32,26 +32,25 @@ function DonutComponent(total, diff, categories, theme) {
         dashArrayValues[0][1] + dashArrayValues[1][1] + dashArrayValues[2][1] 
     ]
 
-    console.log(values, dashArrayValues, offsetValues)
+    // console.log(values, dashArrayValues, offsetValues)
 
-    const donutChunkElement = (index, value, stroke) => {
-        return `<g filter="url(#filter${index}_dii)">
-            <circle
-                fill-opacity="0" 
-                cx="${SETTINGS.cx}"
-                cy="${SETTINGS.cy}"
-                r="${SETTINGS.radius}"
-                stroke-width="${SETTINGS.strokeWidth}"
-                stroke-dasharray="${dashArrayValues[index].join(' ')}"
-                stroke-dashoffset="${offsetValues[index]}"
-                stroke="url(#paint${index}_radial)"
-                stroke-opacity="0.8"
-            />
-        </g>`
-    }
+    // const donutChunkElement = (index, value, stroke) => {
+    //     return `<g filter="url(#filter${index}_dii)">
+    //         <circle
+    //             fill-opacity="0" 
+    //             cx="${SETTINGS.cx}"
+    //             cy="${SETTINGS.cy}"
+    //             r="${SETTINGS.radius}"
+    //             stroke-width="${SETTINGS.strokeWidth}"
+    //             stroke-dasharray="${dashArrayValues[index].join(' ')}"
+    //             stroke-dashoffset="${offsetValues[index]}"
+    //             stroke="url(#paint${index}_radial)"
+    //             stroke-opacity="0.8"
+    //         />
+    //     </g>`
+    // }
 
-    return (
-        `<div class="diagram__donut">
+    return `<div class="diagram__donut">
             <svg width="100%" height="100%" viewBox="0 0 340 340" class="diagram__donut__svg">
   
             <defs>
@@ -239,7 +238,7 @@ function DonutComponent(total, diff, categories, theme) {
                 <stop offset="0.729167" stop-color="#633F00"></stop>
                 <stop offset="1" stop-color="#0F0900"></stop>
               </radialGradient>
-              
+
               <radialGradient id="paint1d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
                 <stop offset="0.71875" stop-color="#4D4D4D"></stop>
                 <stop offset="1" stop-color="#382900"></stop>
@@ -257,7 +256,7 @@ function DonutComponent(total, diff, categories, theme) {
             </defs>
             
             
-            <g filter="${theme == "dark" ? 'url(#filter3_dii)' : 'url(#filter3_ii)'}">
+            <g class="diagram__donut--dark" filter="url(#filter3_dii)">
               <circle 
                       class="donut-segment" 
                       cx="170" 
@@ -267,12 +266,27 @@ function DonutComponent(total, diff, categories, theme) {
                       stroke-width="51"
                       stroke-dasharray="149.13934355503193 755.6393406788285"
                       stroke-dashoffset="0"
-                      stroke="${theme == "dark" ? 'url(#paint3d_radial)' : 'url(#paint3_radial)'}"
+                      stroke="url(#paint3d_radial)"
                       stroke-opacity="0.8"
                ></circle>
             </g>
+
+            <g class="diagram__donut--light" filter="url(#filter3_ii)">
+                <circle 
+                    class="donut-segment" 
+                    cx="170" 
+                    cy="170" 
+                    r="144" 
+                    fill="transparent" 
+                    stroke-width="51"
+                    stroke-dasharray="149.13934355503193 755.6393406788285"
+                    stroke-dashoffset="0"
+                    stroke="url(#paint3_radial)"
+                    stroke-opacity="0.8"
+                ></circle>
+            </g>
             
-            <g filter="${theme == "dark" ? 'url(#filter0_dii)' : 'url(#filter0_ii)'}">
+            <g class="diagram__donut--dark" filter="url(#filter0_dii)">
               <circle 
                     class="donut-segment" 
                     cx="170" 
@@ -282,12 +296,27 @@ function DonutComponent(total, diff, categories, theme) {
                     stroke-width="51"
                     stroke-dasharray="159.08196645870075 745.6967177751596"
                     stroke-dashoffset="755.6393406788285"
-                    stroke="${theme == "dark" ? 'url(#paint0d_radial)' : 'url(#paint0_radial)'}"
+                    stroke="url(#paint0d_radial)"
                     stroke-opacity="0.8"
              ></circle>
             </g>
+
+            <g class="diagram__donut--light" filter="url(#filter0_ii)">
+                <circle 
+                    class="donut-segment" 
+                    cx="170" 
+                    cy="170" 
+                    r="144" 
+                    fill="transparent" 
+                    stroke-width="51"
+                    stroke-dasharray="159.08196645870075 745.6967177751596"
+                    stroke-dashoffset="755.6393406788285"
+                    stroke="url(#paint0_radial)"
+                    stroke-opacity="0.8"
+            ></circle>
+            </g>
             
-            <g filter="${theme == "dark" ? 'url(#filter2_dii)' : 'url(#filter2_ii)'}">
+            <g class="diagram__donut--dark" filter="url(#filter2_dii)">
                 <circle 
                     class="donut-segment" 
                     cx="170" 
@@ -297,12 +326,27 @@ function DonutComponent(total, diff, categories, theme) {
                     stroke-width="51"
                     stroke-dasharray="288.33606420639506 616.4426200274654"
                     stroke-dashoffset="1501.3360584539882"
-                    stroke="${theme == "dark" ? 'url(#paint2d_radial)' : 'url(#paint2_radial)'}"
+                    stroke="url(#paint2d_radial)"
+                    stroke-opacity="0.8"
+                ></circle>
+            </g>  
+
+            <g class="diagram__donut--light" filter="url(#filter2_ii)">
+                <circle 
+                    class="donut-segment" 
+                    cx="170" 
+                    cy="170" 
+                    r="144" 
+                    fill="transparent" 
+                    stroke-width="51"
+                    stroke-dasharray="288.33606420639506 616.4426200274654"
+                    stroke-dashoffset="1501.3360584539882"
+                    stroke="url(#paint2_radial)"
                     stroke-opacity="0.8"
              ></circle>
             </g>  
             
-            <g filter="${theme == "dark" ? 'url(#filter1_dii)' : 'url(#filter1_ii)'}">
+            <g class="diagram__donut--dark" filter="url(#filter1_dii)">
                 <circle 
                     class="donut-segment" 
                     cx="170" 
@@ -312,18 +356,34 @@ function DonutComponent(total, diff, categories, theme) {
                     stroke-width="51"
                     stroke-dasharray="308.2213100137327 596.5573742201277"
                     stroke-dashoffset="2117.7786784814534"
-                    stroke="${theme == "dark" ? 'url(#paint1d_radial)' : 'url(#paint1_radial)'}"
+                    stroke="url(#paint1d_radial)"
+                    stroke-opacity="0.8"
+             ></circle>
+            </g>
+
+            <g class="diagram__donut--light" filter="url(#filter1_ii)">
+                <circle 
+                    class="donut-segment" 
+                    cx="170" 
+                    cy="170" 
+                    r="144" 
+                    fill="transparent" 
+                    stroke-width="51"
+                    stroke-dasharray="308.2213100137327 596.5573742201277"
+                    stroke-dashoffset="2117.7786784814534"
+                    stroke="url(#paint1_radial)"
                     stroke-opacity="0.8"
              ></circle>
             </g>
             
           </svg>
+
             <div class="diagram__donut__text">
                 <div class="diagram__donut__total">${total}</div>
                 <div class="diagram__donut__diff">${diff}</div>
             </div>
         </div>`
-    )
+    
 }
 
 function LegendItem({ title, value, difference }) {
@@ -357,10 +417,9 @@ function LegendComponent(categories) {
 }
 
 export default function DiagramComponent(total, diff, categories) {
-    const theme = 'dark'
     return (
         `<div class="slide__content diagram">
-            ${DonutComponent(total, diff, categories, theme)}
+            ${DonutComponent(total, diff, categories)}
             ${LegendComponent(categories)}
         </div>`
     )

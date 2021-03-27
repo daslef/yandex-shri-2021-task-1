@@ -10,16 +10,19 @@ function HeatmapRowComponent(rowData, index) {
 }
 
 
-function HeatmapImageComponent(theme, activity) {
+function HeatmapImageComponent(activity) {
     const size = (activity == 0) ? 'min' : (activity <= 2) ? 'mid' : (activity <= 4) ? 'max' : 'extra';
-    return (
-        `<div class="heatmap__element">
+    
+    const template = theme => {
+        return `<div class="heatmap__element heatmap__element--${theme}">
             <img class="heatmap__image" src="./images/${size}-${theme}.svg" />
         </div>`
-    )
+    }
+    
+    return template('light').concat(template('dark'))
 }
 
-function generateHourData(theme, data) {
+function generateHourData(data) {
 
     const hourData = []
     const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
@@ -36,7 +39,7 @@ function generateHourData(theme, data) {
             }
         })
 
-        const dayImages = dayData.map(value => HeatmapImageComponent(theme, value))
+        const dayImages = dayData.map(value => HeatmapImageComponent(value))
 
         const heatmapGap = '<div class="heatmap__gap"></div>'
         
@@ -53,7 +56,7 @@ function generateHourData(theme, data) {
 }
 
 
-function generateDayData(theme, data) {
+function generateDayData(data) {
     
     const dayData = []
 
@@ -61,7 +64,7 @@ function generateDayData(theme, data) {
         
         const hourData = [data.mon[i], data.tue[i], data.wed[i], data.thu[i], data.fri[i], data.sat[i], data.sun[i]]
         
-        const hourImages = hourData.map(value => HeatmapImageComponent(theme, value))
+        const hourImages = hourData.map(value => HeatmapImageComponent(value))
 
         const heatmapGap = '<div class="heatmap__gap"></div>'
         
@@ -79,14 +82,14 @@ function generateDayData(theme, data) {
 }
 
 
-function HeatmapComponent(data, orientation, theme) {
+function HeatmapComponent(data, orientation) {
 
     let heatMapData = [];
 
     if (orientation == 'landscape') {
-        heatMapData = generateHourData(theme, data);
+        heatMapData = generateHourData(data);
     } else {
-        heatMapData = generateDayData(theme, data);
+        heatMapData = generateDayData(data);
     }
         
     return (
@@ -97,15 +100,18 @@ function HeatmapComponent(data, orientation, theme) {
 }
 
 
-function LegendComponent(theme, orientation) {
+function LegendComponent(orientation) {
 
-    const sliderUnitSrc = `./images/slider-unit-${theme}.svg`
+    const sliderUnitSrc = theme => {
+        return `<img class="activity__legend__img--${theme}" src=./images/slider-unit-${theme}.svg />`
+    }
 
     return (
         `<div class="activity__legend activity__legend--${orientation}">
             <div class="activity__legend__item">
                 <div class="activity__legend__pic">
-                    <img src=${sliderUnitSrc} />
+                    ${sliderUnitSrc("light")}
+                    ${sliderUnitSrc("dark")}
                 </div>
                 <div class="activity__legend__text">${orientation == 'landscape' ? '2 часа' : '1 час'}</div>
             </div>
@@ -132,13 +138,12 @@ function LegendComponent(theme, orientation) {
 
 export default function ActivityComponent(data) {
 
-    // const theme = document.body.className.substr(6) // why not 5??
-    const theme = 'dark'
-
     return (
         `<div class="slide__content activity">
-            ${HeatmapComponent(data.data, 'portrait', theme)}
-            ${LegendComponent(theme, 'portrait')}
+            ${HeatmapComponent(data.data, 'portrait')}
+            ${LegendComponent('portrait')}
+            ${HeatmapComponent(data.data, 'landscape')}
+            ${LegendComponent('landscape')}
         </div>`
     )
 }
