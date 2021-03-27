@@ -10,7 +10,7 @@ function HeatmapRowComponent(rowData, index) {
 }
 
 
-function HeatmapImageComponent(activity) {
+function HeatmapImageComponent(theme, activity) {
     const size = (activity == 0) ? 'min' : (activity <= 2) ? 'mid' : (activity <= 4) ? 'max' : 'extra';
     return (
         `<div class="heatmap__element">
@@ -19,7 +19,7 @@ function HeatmapImageComponent(activity) {
     )
 }
 
-function generateHourData(data) {
+function generateHourData(theme, data) {
 
     const hourData = []
     const days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"]
@@ -36,7 +36,7 @@ function generateHourData(data) {
             }
         })
 
-        const dayImages = dayData.map(value => HeatmapImageComponent(value))
+        const dayImages = dayData.map(value => HeatmapImageComponent(theme, value))
 
         const heatmapGap = '<div class="heatmap__gap"></div>'
         
@@ -53,7 +53,7 @@ function generateHourData(data) {
 }
 
 
-function generateDayData(data) {
+function generateDayData(theme, data) {
     
     const dayData = []
 
@@ -61,7 +61,7 @@ function generateDayData(data) {
         
         const hourData = [data.mon[i], data.tue[i], data.wed[i], data.thu[i], data.fri[i], data.sat[i], data.sun[i]]
         
-        const hourImages = hourData.map(value => HeatmapImageComponent(value))
+        const hourImages = hourData.map(value => HeatmapImageComponent(theme, value))
 
         const heatmapGap = '<div class="heatmap__gap"></div>'
         
@@ -79,14 +79,14 @@ function generateDayData(data) {
 }
 
 
-function HeatmapComponent(data, orientation) {
+function HeatmapComponent(data, orientation, theme) {
 
     let heatMapData = [];
 
     if (orientation == 'landscape') {
-        heatMapData = generateHourData(data);
+        heatMapData = generateHourData(theme, data);
     } else {
-        heatMapData = generateDayData(data);
+        heatMapData = generateDayData(theme, data);
     }
         
     return (
@@ -132,11 +132,12 @@ function LegendComponent(theme, orientation) {
 
 export default function ActivityComponent(data) {
 
-    const theme = document.body.className.substr(6) // why not 5??
+    // const theme = document.body.className.substr(6) // why not 5??
+    const theme = 'dark'
 
     return (
         `<div class="slide__content activity">
-            ${HeatmapComponent(data.data, 'portrait')}
+            ${HeatmapComponent(data.data, 'portrait', theme)}
             ${LegendComponent(theme, 'portrait')}
         </div>`
     )

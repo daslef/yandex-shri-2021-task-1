@@ -15,8 +15,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const slideNumber = urlParams.get('slide') || 0;
 
-        const theme = urlParams.get('theme') || 'dark';
-        body.className = `theme_${theme}`;
+        body.className = `theme_${urlParams.get('theme') || 'dark'}`;
 
         fetch(`/api/data/${slideNumber}`)
             .then(res => res.json())

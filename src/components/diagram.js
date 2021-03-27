@@ -1,4 +1,4 @@
-function DonutComponent(total, diff, categories) {
+function DonutComponent(total, diff, categories, theme) {
 
     const SETTINGS = {
         cx: 170,
@@ -357,9 +357,10 @@ function LegendComponent(categories) {
 }
 
 export default function DiagramComponent(total, diff, categories) {
+    const theme = 'dark'
     return (
         `<div class="slide__content diagram">
-            ${DonutComponent(total, diff, categories)}
+            ${DonutComponent(total, diff, categories, theme)}
             ${LegendComponent(categories)}
         </div>`
     )

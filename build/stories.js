@@ -234,7 +234,7 @@ function ChartComponent(values, users) {
   return "<div class=\"slide__content chart\">\n            ".concat(chart, "\n            ").concat(leaders, "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/components/diagram.js
-function DonutComponent(total, diff, categories) {
+function DonutComponent(total, diff, categories, theme) {
   var SETTINGS = {
     cx: 170,
     cy: 170,
@@ -290,7 +290,8 @@ function LegendComponent(categories) {
 }
 
 function DiagramComponent(total, diff, categories) {
-  return "<div class=\"slide__content diagram\">\n            ".concat(DonutComponent(total, diff, categories), "\n            ").concat(LegendComponent(categories), "\n        </div>");
+  var theme = 'dark';
+  return "<div class=\"slide__content diagram\">\n            ".concat(DonutComponent(total, diff, categories, theme), "\n            ").concat(LegendComponent(categories), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/components/activity.js
 function HeatmapRowComponent(rowData, index) {
@@ -298,12 +299,12 @@ function HeatmapRowComponent(rowData, index) {
   return "<div class=\"heatmap__row\" style=\"bottom: ".concat(magicNumber * (23 - index), "px;\">\n            ").concat(rowData.join(''), "\n        </div>");
 }
 
-function HeatmapImageComponent(activity) {
+function HeatmapImageComponent(theme, activity) {
   var size = activity == 0 ? 'min' : activity <= 2 ? 'mid' : activity <= 4 ? 'max' : 'extra';
   return "<div class=\"heatmap__element\">\n            <img class=\"heatmap__image\" src=\"./images/".concat(size, "-").concat(theme, ".svg\" />\n        </div>");
 }
 
-function generateHourData(data) {
+function generateHourData(theme, data) {
   var hourData = [];
   var days = ["mon", "tue", "wed", "thu", "fri", "sat", "sun"];
 
@@ -318,7 +319,7 @@ function generateHourData(data) {
       }
     });
     var dayImages = dayData.map(function (value) {
-      return HeatmapImageComponent(value);
+      return HeatmapImageComponent(theme, value);
     });
     var heatmapGap = '<div class="heatmap__gap"></div>';
 
@@ -338,13 +339,13 @@ function generateHourData(data) {
   return hourData;
 }
 
-function generateDayData(data) {
+function generateDayData(theme, data) {
   var dayData = [];
 
   for (var i = 0; i < 24; i++) {
     var hourData = [data.mon[i], data.tue[i], data.wed[i], data.thu[i], data.fri[i], data.sat[i], data.sun[i]];
     var hourImages = hourData.map(function (value) {
-      return HeatmapImageComponent(value);
+      return HeatmapImageComponent(theme, value);
     });
     var heatmapGap = '<div class="heatmap__gap"></div>';
 
@@ -360,13 +361,13 @@ function generateDayData(data) {
   return dayData;
 }
 
-function HeatmapComponent(data, orientation) {
+function HeatmapComponent(data, orientation, theme) {
   var heatMapData = [];
 
   if (orientation == 'landscape') {
-    heatMapData = generateHourData(data);
+    heatMapData = generateHourData(theme, data);
   } else {
-    heatMapData = generateDayData(data);
+    heatMapData = generateDayData(theme, data);
   }
 
   return "<div class=\"activity__heatmap activity__heatmap--".concat(orientation, "\">\n            ").concat(heatMapData.map(function (el, ix) {
@@ -380,9 +381,9 @@ function activity_LegendComponent(theme, orientation) {
 }
 
 function ActivityComponent(data) {
-  var theme = document.body.className.substr(6); // why not 5??
-
-  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'portrait'), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
+  // const theme = document.body.className.substr(6) // why not 5??
+  var theme = 'dark';
+  return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data.data, 'portrait', theme), "\n            ").concat(activity_LegendComponent(theme, 'portrait'), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/stories.js
 
