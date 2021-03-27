@@ -1,0 +1,55 @@
+@import '../_media.scss';
+
+.chart__person {
+    
+    display: flex;
+    align-items: center;
+
+    @include _landscape_668 {
+        width: 236px;
+        &:nth-of-type(3) {
+            padding-left: 16px;
+        }
+    }
+
+    &__pic {
+        width: 40px;
+        height: 40px;
+        border-radius: 100px;
+        margin-right: 14px;
+    }
+
+    &__photo {
+        border-radius: 50%;
+        height: 40px;
+        width: 100%;
+        object-fit: cover;
+        object-position: 50% 50%;
+        filter: var(--filter);
+    }
+
+    &__meta {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+
+        @include _landscape_668 {
+            justify-content: center;
+        }
+    }
+
+    &__name {
+        font-family: 'Roboto Medium';
+        font-size: 16px;
+        line-height: 18px;
+        color: var(--primary-text-color);
+        margin-bottom: 4px;
+    }
+
+    &__value {
+        font-size: 14px;
+        line-height: 16px;
+        color: var(--subhead-text-color);
+    }
+}
