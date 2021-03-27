@@ -235,18 +235,18 @@ function DonutComponent(total, diff, categories) {
               </radialGradient>
 
               <radialGradient id="paint0d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
-                <stop offset="0.729167" stop-color="#633F00"></stop>
+                <stop offset="0.729167" stop-color="#7B4E00"></stop>
                 <stop offset="1" stop-color="#0F0900"></stop>
               </radialGradient>
               
               <radialGradient id="paint1d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
-                <stop offset="0.71875" stop-color="#4D4D4D"></stop>
-                <stop offset="1" stop-color="#382900"></stop>
+                <stop offset="0.71875" stop-color="#3D3931"></stop>
+                <stop offset="1" stop-color="#3D3931"></stop>
               </radialGradient>
               
               <radialGradient id="paint2d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
-                <stop offset="0.71875" stop-color="#9B9B9B"></stop>
-                <stop offset="1" stop-color="#382900"></stop>
+                <stop offset="0.71875" stop-color="#5B5B57"></stop>
+                <stop offset="1" stop-color="#3D3931"></stop>
               </radialGradient>
               
               <radialGradient id="paint3d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
