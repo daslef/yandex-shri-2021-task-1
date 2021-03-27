@@ -37,6 +37,7 @@
         &__svg {
             height: auto;
             width: 100%;
+            transform: rotate(-120deg);
             @include _landscape_668 {
                 width: auto;
             }
@@ -104,18 +105,18 @@
         }
 
         & > div:nth-of-type(3) > .legend__item__indicator {
-            background: radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(99, 63, 0, 0.5) 72.92%, rgba(15, 9, 0, 0.5) 100%);
-            box-shadow: 0px 0px 20px -8px rgba(147, 93, 0, 0.2), inset -1px 1px 1px rgba(255, 255, 255, 0.5), inset 0px 0px 20px rgba(202, 129, 0, 0.9);
+            background: var(--diagram-indicator2-background); 
+            box-shadow: var(--diagram-indicator2-shadow);
         }
 
         & > div:nth-of-type(5) > .legend__item__indicator {
-            background: radial-gradient(100% 100% at 50% 0%, rgba(151, 151, 151, 0.5) 0%, rgba(41, 41, 41, 0.5) 100%);
-            box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5);
+            background: var(--diagram-indicator3-background); 
+            box-shadow: var(--diagram-indicator3-shadow);
         }
 
         & > div:nth-of-type(7) > .legend__item__indicator {
-            background: radial-gradient(100% 100% at 50% 0%, rgba(62, 62, 62, 0.5) 0%, rgba(40, 40, 40, 0.5) 100%);
-            box-shadow: inset -1px 1px 1px rgba(255, 255, 255, 0.5);
+            background: var(--diagram-indicator4-background); 
+            box-shadow: var(--diagram-indicator4-shadow);
         }
     }
 }
@@ -128,9 +129,10 @@
         min-width: 16px;
         min-height: 16px;
 
-        background: radial-gradient(49.84% 49.84% at 49.84% 50.16%, rgba(255, 163, 0, 0.8) 71.88%, rgba(91, 58, 0, 0.8) 100%);
-        box-shadow: 0px 0px 20px -8px rgba(248, 158, 0, 0.2), inset -1px 1px 1px rgba(255, 255, 255, 0.5), inset 0px 0px 20px rgba(255, 162, 0, 0.9);
+        background: var(--diagram-indicator1-background); 
+        box-shadow: var(--diagram-indicator1-shadow);
         border-radius: 50%;
+
         // transform: matrix(1, 0, 0, -1, 0, 0);
 
         margin-right: 10px;
