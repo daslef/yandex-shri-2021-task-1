@@ -238,7 +238,7 @@ function DonutComponent(total, diff, categories) {
                 <stop offset="0.729167" stop-color="#633F00"></stop>
                 <stop offset="1" stop-color="#0F0900"></stop>
               </radialGradient>
-
+              
               <radialGradient id="paint1d_radial" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(175.486 176.514) rotate(90) scale(163.486)">
                 <stop offset="0.71875" stop-color="#4D4D4D"></stop>
                 <stop offset="1" stop-color="#382900"></stop>
