@@ -23,7 +23,7 @@ function PersonCardEmbedded(selectedUser) {
 }
 
 
-function PersonComponent({ srcSuffix, name, score, place, emoji, selectedUser, orientation }) {
+export default function PersonComponent({ srcSuffix, name, score, place, emoji, selectedUser, orientation }) {
 
     const barSizeModifier = (place >= 4) ? '-small' : (place >= 2) ? '-medium' : '-large';
 
@@ -56,48 +56,6 @@ function PersonComponent({ srcSuffix, name, score, place, emoji, selectedUser, o
                 <div class="podium__item__place">${place}</div>
                 ${selectedPerson}
             </div>
-        </div>`
-    )
-}
-
-
-export default function LeadersComponent(emoji, users, selectedUsedId) {
-
-    let selectedUser;
-    
-    if (selectedUsedId) {
-        const selectedUserIndex = users.map(object => object.id).indexOf(selectedUsedId)
-        selectedUser = { ...users[selectedUserIndex], index: selectedUserIndex }
-    }
-
-    return (
-        `<div class="slide__content podium podium--landscape">
-            ${users
-                .slice(0, 5)
-                .map((user, ix) => PersonComponent({
-                    srcSuffix: user.avatar,
-                    name: user.name,
-                    score: user.valueText,
-                    place: ix + 1,
-                    emoji: emoji,
-                    selectedUser: selectedUser, 
-                    orientation: 'landscape'}))
-                .join('')
-            }
-        </div>
-        <div class="slide__content podium--portrait">
-        ${users
-            .slice(0, 5)
-            .map((user, ix) => PersonComponent({
-                srcSuffix: user.avatar,
-                name: user.name,
-                score: user.valueText,
-                place: ix + 1,
-                emoji: emoji,
-                selectedUser: selectedUser,
-                orientation: 'portrait'}))
-            .join('')
-        }
         </div>`
     )
 }

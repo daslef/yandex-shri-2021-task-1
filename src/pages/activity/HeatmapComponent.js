@@ -82,68 +82,15 @@ function generateDayData(data) {
 }
 
 
-function HeatmapComponent(data, orientation) {
+export default function HeatmapComponent(data, orientation) {
 
-    let heatMapData = [];
-
-    if (orientation == 'landscape') {
-        heatMapData = generateHourData(data);
-    } else {
-        heatMapData = generateDayData(data);
-    }
+    const heatMapData = (orientation == 'landscape') 
+        ? generateHourData(data)
+        : generateDayData(data);
         
     return (
         `<div class="activity__heatmap activity__heatmap--${orientation}">
             ${heatMapData.map((el, ix) => HeatmapRowComponent(el, ix)).join('')}
-        </div>`
-    )
-}
-
-
-function LegendComponent(orientation) {
-
-    const sliderUnitSrc = theme => {
-        return `<img class="activity__legend__img--${theme}" src=./images/slider-unit-${theme}.svg />`
-    }
-
-    return (
-        `<div class="activity__legend activity__legend--${orientation}">
-            <div class="activity__legend__item">
-                <div class="activity__legend__pic">
-                    ${sliderUnitSrc("light")}
-                    ${sliderUnitSrc("dark")}
-                </div>
-                <div class="activity__legend__text">${orientation == 'landscape' ? '2 часа' : '1 час'}</div>
-            </div>
-            <div class="activity__legend__item">
-                <div class="activity__legend__pic activity__legend__pic--min"></div>
-                <div class="activity__legend__text">0</div>
-            </div>
-            <div class="activity__legend__item">
-                <div class="activity__legend__pic activity__legend__pic--mid"></div>
-                <div class="activity__legend__text">1 — 2</div>
-            </div>
-            <div class="activity__legend__item">
-                <div class="activity__legend__pic activity__legend__pic--max"></div>
-                <div class="activity__legend__text">3 — 4</div>
-            </div>
-            <div class="activity__legend__item">
-                <div class="activity__legend__pic activity__legend__pic--extra"></div>
-                <div class="activity__legend__text">5 — 6</div>
-            </div>
-        </div>`
-    )
-
-}
-
-export default function ActivityComponent(data) {
-
-    return (
-        `<div class="slide__content activity">
-            ${HeatmapComponent(data.data, 'portrait')}
-            ${LegendComponent('portrait')}
-            ${HeatmapComponent(data.data, 'landscape')}
-            ${LegendComponent('landscape')}
         </div>`
     )
 }

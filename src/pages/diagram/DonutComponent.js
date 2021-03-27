@@ -1,4 +1,4 @@
-function DonutComponent(total, diff, categories) {
+export default function DonutComponent(total, diff, categories) {
 
     const SETTINGS = {
         cx: 170,
@@ -14,7 +14,6 @@ function DonutComponent(total, diff, categories) {
             return parseInt(category.substring(0, spaceIndex))
         })
 
-    
     const l =  2 * Math.PI * SETTINGS.radius
     const valuesSum = values.reduce((acc, val) => acc + val)
 
@@ -31,24 +30,6 @@ function DonutComponent(total, diff, categories) {
         dashArrayValues[0][1] + dashArrayValues[1][1], 
         dashArrayValues[0][1] + dashArrayValues[1][1] + dashArrayValues[2][1] 
     ]
-
-    // console.log(values, dashArrayValues, offsetValues)
-
-    // const donutChunkElement = (index, value, stroke) => {
-    //     return `<g filter="url(#filter${index}_dii)">
-    //         <circle
-    //             fill-opacity="0" 
-    //             cx="${SETTINGS.cx}"
-    //             cy="${SETTINGS.cy}"
-    //             r="${SETTINGS.radius}"
-    //             stroke-width="${SETTINGS.strokeWidth}"
-    //             stroke-dasharray="${dashArrayValues[index].join(' ')}"
-    //             stroke-dashoffset="${offsetValues[index]}"
-    //             stroke="url(#paint${index}_radial)"
-    //             stroke-opacity="0.8"
-    //         />
-    //     </g>`
-    // }
 
     return `<div class="diagram__donut">
             <svg width="100%" height="100%" viewBox="0 0 340 340" class="diagram__donut__svg">
@@ -384,43 +365,4 @@ function DonutComponent(total, diff, categories) {
             </div>
         </div>`
     
-}
-
-function LegendItem({ title, value, difference }) {
-    
-    return (
-        `<div class="legend__item">
-            <div class="legend__item__indicator"></div>
-            <div class="legend__item__title">${title}</div>
-            <div class="legend__item__values">
-                <div class="legend__item__diff">${difference.slice(0, difference.indexOf(' '))}</div>
-                <div class="legend__item__total">${value.slice(0, difference.indexOf(' '))}</div>
-            </div>
-        </div>`
-    )
-}
-
-function LegendComponent(categories) {
-
-    const separator = `<div class="diagram__legend__separator"></div>`
-
-    const output = categories
-        .map(category => LegendItem({
-            title: category.title,
-            value: category.valueText,
-            difference: category.differenceText
-        }))
-        .join(separator)
-
-    return `<div class="diagram__legend">${output}</div>`
-
-}
-
-export default function DiagramComponent(total, diff, categories) {
-    return (
-        `<div class="slide__content diagram">
-            ${DonutComponent(total, diff, categories)}
-            ${LegendComponent(categories)}
-        </div>`
-    )
 }
