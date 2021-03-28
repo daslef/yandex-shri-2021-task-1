@@ -5,9 +5,17 @@ import './scss/_variables.scss';
 import './scss/_fonts.scss';
 
 import './scss/leaders/leaders.scss';
+import './scss/leaders/__item.scss';
+
 import './scss/diagram/diagram.scss';
+import './scss/diagram/__legend.scss';
+import './scss/diagram/__donut.scss';
+
 import './scss/vote/vote.scss';
+
 import './scss/activity/activity.scss';
+import './scss/activity/__heatmap.scss';
+import './scss/activity/__legend.scss';
 
 import './scss/chart/chart.scss';
 import './scss/chart/__item.scss';

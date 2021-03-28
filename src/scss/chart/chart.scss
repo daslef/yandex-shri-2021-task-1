@@ -13,6 +13,14 @@
         margin-top: 33px;
     }
 
+    @include _landscape_736 {
+        margin-top: 0;
+    }
+
+    @include _landscape_1024 {
+        justify-content: center;
+    }
+
     &__list {
         display: flex;
         flex: 1;
@@ -27,6 +35,15 @@
             margin-left: 0;
             padding: 0 34px;
         }
+
+        @include _landscape_736 {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        @include _landscape_1024 {
+            max-height: 70%;
+        }
     }
 
     &__leaders {
@@ -38,6 +55,14 @@
         @include _landscape_668 {
             flex-direction: row;
             justify-content: center;
+        }
+
+        @include _landscape_736 {
+            padding: 24px 0;
+        }
+
+        @include _landscape_1024 {
+            padding-top: 6vh;
         }
 
         &__separator {

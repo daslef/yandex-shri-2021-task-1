@@ -2,8 +2,8 @@ function PersonCardComponent(srcSuffix, name, score, selected = false) {
     return (
         `<div class="podium__item__pic ${selected && 'podium__item__pic--selected'}">
             <picture>
-                <source srcset="./images/4x/${srcSuffix}" media="(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)"/>
-                <source srcset="./images/3x/${srcSuffix}" media="(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)"/>
+                <source srcset="./images/4x/${srcSuffix}" media="(orientation: landscape) and (min-width: 1920px), (orientation: portrait) and (min-width: 1200px)"/>
+                <source srcset="./images/3x/${srcSuffix}" media="(orientation: landscape) and (min-width: 1367px), (orientation: portrait) and (min-width: 880px)"/>
                 <source srcset="./images/2x/${srcSuffix}" media="(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)"/>
                 <img class="podium__item__photo" src="./images/1x/${srcSuffix}">
             </picture>

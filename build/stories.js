@@ -7,7 +7,7 @@ function _readOnlyError(name) { throw new TypeError("\"" + name + "\" is read-on
 
 function PersonCardComponent(srcSuffix, name, score) {
   var selected = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
-  return "<div class=\"podium__item__pic ".concat(selected && 'podium__item__pic--selected', "\">\n            <picture>\n                <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)\"/>\n                <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)\"/>\n                <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                <img class=\"podium__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n            </picture>\n        </div>\n        <div class=\"podium__item__name ").concat(selected && 'podium__item__name--selected', "\">").concat(name, "</div>\n        <div class=\"podium__item__score ").concat(selected && 'podium__item__score--selected', "\">").concat(score, "</div>");
+  return "<div class=\"podium__item__pic ".concat(selected && 'podium__item__pic--selected', "\">\n            <picture>\n                <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1920px), (orientation: portrait) and (min-width: 1200px)\"/>\n                <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1367px), (orientation: portrait) and (min-width: 880px)\"/>\n                <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                <img class=\"podium__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n            </picture>\n        </div>\n        <div class=\"podium__item__name ").concat(selected && 'podium__item__name--selected', "\">").concat(name, "</div>\n        <div class=\"podium__item__score ").concat(selected && 'podium__item__score--selected', "\">").concat(score, "</div>");
 }
 
 function PersonCardEmbedded(selectedUser) {
@@ -112,7 +112,7 @@ function PersonComponent_PersonComponent(_ref) {
   var srcSuffix = _ref.srcSuffix,
       name = _ref.name,
       selected = _ref.selected;
-  return "<div class=\"vote__item ".concat(selected ? 'vote__item--selected' : '', "\">\n            <div class=\"vote__item__awards\">").concat(selected ? '👍' : '', "</div>\n            <div class=\"vote__item__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1921px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1280px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"vote__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"vote__item__name\">").concat(name, "</div>\n        </div>");
+  return "<div class=\"vote__item ".concat(selected ? 'vote__item--selected' : '', "\">\n            <div class=\"vote__item__awards\">").concat(selected ? '👍' : '', "</div>\n            <div class=\"vote__item__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1920px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1024px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"vote__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"vote__item__name\">").concat(name, "</div>\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/pages/vote/index.js
 
@@ -391,6 +391,11 @@ function ActivitySlide(_ref) {
   return "<div class=\"slide__content activity\">\n            ".concat(HeatmapComponent(data, 'portrait'), "\n            ").concat(HeatmapComponent(data, 'landscape'), "\n            ").concat(LegendComponent_LegendComponent('portrait'), "\n            ").concat(LegendComponent_LegendComponent('landscape'), "\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/stories.js
+
+
+
+
+
 
 
 

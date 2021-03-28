@@ -12,11 +12,28 @@
         }
     }
 
+    @include _landscape_1920 {
+        width: auto;
+        margin-right: 64px;
+        &:nth-of-type(3) {
+            padding-left: 64px;
+        }
+    }
+
     &__pic {
         width: 40px;
         height: 40px;
         border-radius: 100px;
         margin-right: 14px;
+        @include _landscape_1024 {
+            width: 60px;
+            height: 60px;
+        }
+        @include _landscape_1920 {
+            width: 120px;
+            height: 120px;
+            margin-right: 28px;
+        }
     }
 
     &__photo {
@@ -26,6 +43,12 @@
         object-fit: cover;
         object-position: 50% 50%;
         filter: var(--filter);
+        @include _landscape_1024 {
+            height: 60px;
+        }
+        @include _landscape_1920 {
+            height: 120px;
+        }
     }
 
     &__meta {
@@ -45,11 +68,18 @@
         line-height: 18px;
         color: var(--primary-text-color);
         margin-bottom: 4px;
+        @include _landscape_1920 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
     }
 
     &__value {
         font-size: 14px;
         line-height: 16px;
         color: var(--subhead-text-color);
+        @include _landscape_1920 {
+            font-size: 22px;
+        }
     }
 }
