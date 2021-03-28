@@ -1,4 +1,4 @@
-export default function ArrowComponent({direction, selected}) {
+export default function ArrowComponent({ direction, selected, offset }) {
    
     const directionModifier = direction == 'up' ? 'up' : 'down'
 
@@ -8,13 +8,22 @@ export default function ArrowComponent({direction, selected}) {
         className += ' vote__arrow--selected'
     }
 
+    const dataParams = JSON.stringify({
+        alias: 'vote',
+        data: {
+          offset: offset
+        }
+    })
+
     return (
         `<svg 
             width="64" 
             height="64" 
             class="${className}"
             viewBox="0 0 64 64" 
-            fill="none" 
+            fill="none"
+            data-action="update"
+            data-params="${dataParams}"
             xmlns="http://www.w3.org/2000/svg">
                 <path 
                     fill-rule="evenodd" 

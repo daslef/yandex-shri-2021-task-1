@@ -1,6 +1,5 @@
 const path = require('path');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 
 module.exports = {
@@ -32,7 +31,20 @@ module.exports = {
                     MiniCssExtractPlugin.loader,
                     'css-loader',
                     'resolve-url-loader',
-                    'postcss-loader',
+                    {
+                        loader: "postcss-loader",
+                        options: {
+                          postcssOptions: {
+                            plugins: [
+                              [
+                                "postcss-preset-env",
+                                { browsers: 'last 2 versions' },
+                                "autoprefixer",
+                              ],
+                            ],
+                          },
+                        },
+                    },
                     'sass-loader',
                 ]
             },
@@ -63,7 +75,6 @@ module.exports = {
         ]
     },
     plugins: [
-        // new CleanWebpackPlugin(), 
         new MiniCssExtractPlugin({
            filename: 'stories.css',
         }),

@@ -97,7 +97,8 @@ function LeadersSlide(emoji, users, selectedUsedId) {
 ;// CONCATENATED MODULE: ./src/pages/vote/ArrowComponent.js
 function ArrowComponent(_ref) {
   var direction = _ref.direction,
-      selected = _ref.selected;
+      selected = _ref.selected,
+      offset = _ref.offset;
   var directionModifier = direction == 'up' ? 'up' : 'down';
   var className = "vote__arrow vote__arrow--".concat(directionModifier);
 
@@ -105,14 +106,27 @@ function ArrowComponent(_ref) {
     className += ' vote__arrow--selected';
   }
 
-  return "<svg \n            width=\"64\" \n            height=\"64\" \n            class=\"".concat(className, "\"\n            viewBox=\"0 0 64 64\" \n            fill=\"none\" \n            xmlns=\"http://www.w3.org/2000/svg\">\n                <path \n                    fill-rule=\"evenodd\" \n                    clip-rule=\"evenodd\" \n                    d=\"M32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62C48.5685 62 62 48.5685 \n                    62 32C62 15.4315 48.5685 2 32 2ZM32 -2.79753e-06C14.3269 -4.34256e-06 4.34256e-06 14.3269 \n                    2.79753e-06 32C1.2525e-06 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 \n                    -1.2525e-06 32 -2.79753e-06ZM4.99999 32C4.99999 17.0883 17.0883 4.99999 32 4.99999C46.9117 4.99999 \n                    59 17.0883 59 32C59 46.9117 46.9117 59 32 59C17.0883 59 4.99999 46.9117 4.99999 32ZM38.9393 \n                    36.0607C39.5251 36.6464 40.4749 36.6464 41.0607 36.0607C41.6464 35.4749 41.6464 34.5251 \n                    41.0607 33.9393L33.0607 25.9393C32.4749 25.3536 31.5251 25.3536 30.9393 25.9393L22.9393 \n                    33.9393C22.3536 34.5251 22.3536 35.4749 22.9393 36.0607C23.5251 36.6464 24.4749 36.6464 \n                    25.0607 36.0607L32 29.1213L38.9393 36.0607Z\" \n                />\n        </svg>");
+  var dataParams = JSON.stringify({
+    alias: 'vote',
+    data: {
+      offset: offset
+    }
+  });
+  return "<svg \n            width=\"64\" \n            height=\"64\" \n            class=\"".concat(className, "\"\n            viewBox=\"0 0 64 64\" \n            fill=\"none\"\n            data-action=\"update\"\n            data-params=\"").concat(dataParams, "\"\n            xmlns=\"http://www.w3.org/2000/svg\">\n                <path \n                    fill-rule=\"evenodd\" \n                    clip-rule=\"evenodd\" \n                    d=\"M32 2C15.4315 2 2 15.4315 2 32C2 48.5685 15.4315 62 32 62C48.5685 62 62 48.5685 \n                    62 32C62 15.4315 48.5685 2 32 2ZM32 -2.79753e-06C14.3269 -4.34256e-06 4.34256e-06 14.3269 \n                    2.79753e-06 32C1.2525e-06 49.6731 14.3269 64 32 64C49.6731 64 64 49.6731 64 32C64 14.3269 49.6731 \n                    -1.2525e-06 32 -2.79753e-06ZM4.99999 32C4.99999 17.0883 17.0883 4.99999 32 4.99999C46.9117 4.99999 \n                    59 17.0883 59 32C59 46.9117 46.9117 59 32 59C17.0883 59 4.99999 46.9117 4.99999 32ZM38.9393 \n                    36.0607C39.5251 36.6464 40.4749 36.6464 41.0607 36.0607C41.6464 35.4749 41.6464 34.5251 \n                    41.0607 33.9393L33.0607 25.9393C32.4749 25.3536 31.5251 25.3536 30.9393 25.9393L22.9393 \n                    33.9393C22.3536 34.5251 22.3536 35.4749 22.9393 36.0607C23.5251 36.6464 24.4749 36.6464 \n                    25.0607 36.0607L32 29.1213L38.9393 36.0607Z\" \n                />\n        </svg>");
 }
 ;// CONCATENATED MODULE: ./src/pages/vote/PersonComponent.js
 function PersonComponent_PersonComponent(_ref) {
   var srcSuffix = _ref.srcSuffix,
       name = _ref.name,
-      selected = _ref.selected;
-  return "<div class=\"vote__item ".concat(selected ? 'vote__item--selected' : '', "\">\n            <div class=\"vote__item__awards\">").concat(selected ? '👍' : '', "</div>\n            <div class=\"vote__item__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1920px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1024px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"vote__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"vote__item__name\">").concat(name, "</div>\n        </div>");
+      selected = _ref.selected,
+      id = _ref.id;
+  var dataParams = JSON.stringify({
+    alias: 'leaders',
+    data: {
+      selectedUserId: id
+    }
+  });
+  return "<div class=\"vote__item ".concat(selected ? 'vote__item--selected' : '', "\" data-action=\"update\" data-params=").concat(dataParams, ">\n            <div class=\"vote__item__awards\">").concat(selected ? '👍' : '', "</div>\n            <div class=\"vote__item__pic\">\n                <picture>\n                    <source srcset=\"./images/4x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1920px), (orientation: portrait) and (min-width: 1200px)\"/>\n                    <source srcset=\"./images/3x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 1024px), (orientation: portrait) and (min-width: 880px)\"/>\n                    <source srcset=\"./images/2x/").concat(srcSuffix, "\" media=\"(orientation: landscape) and (min-width: 880px), (orientation: portrait) and (min-width: 570px)\"/>\n                    <img class=\"vote__item__photo\" src=\"./images/1x/").concat(srcSuffix, "\">\n                </picture>\n            </div>\n            <div class=\"vote__item__name\">").concat(name, "</div>\n        </div>");
 }
 ;// CONCATENATED MODULE: ./src/pages/vote/index.js
 
@@ -122,16 +136,21 @@ function VoteSlide(emoji, selectedUserId, data) {
     return PersonComponent_PersonComponent({
       srcSuffix: user.avatar,
       name: user.name,
+      id: user.id,
       selected: user.id === selectedUserId
     });
   }
 
+  var offsetPrevious = 0;
+  var offsetNext = 8;
   return "<div class=\"slide__content vote vote--portrait\">\n            <div class=\"slide__row slide__row--left\">\n                ".concat(renderPerson(data[0]), "\n                ").concat(renderPerson(data[3]), "\n                ").concat(renderPerson(data[6]), "\n            </div>\n            <div class=\"slide__row slide__row--middle\">\n                ").concat(ArrowComponent({
     direction: 'up',
-    selected: false
+    selected: false,
+    offset: offsetPrevious
   }), "\n                ").concat(renderPerson(data[1]), "\n                ").concat(renderPerson(data[4]), "\n                ").concat(ArrowComponent({
     direction: 'down',
-    selected: true
+    selected: true,
+    offset: offsetNext
   }), "\n            </div>\n            <div class=\"slide__row slide__row--right\">\n                ").concat(renderPerson(data[2]), "\n                ").concat(renderPerson(data[5]), "\n                ").concat(renderPerson(data[7]), "\n            </div>\n        </div>\n\n        <div class=\"slide__content vote vote--landscape\">\n            <div class=\"slide__column slide__column--1\">\n                ").concat(renderPerson(data[0]), "\n            </div>\n            <div class=\"slide__column slide__column--2\">\n                ").concat(renderPerson(data[1]), "\n                ").concat(renderPerson(data[4]), "\n            </div>\n            <div class=\"slide__column slide__column--3\">\n                ").concat(ArrowComponent({
     direction: 'up',
     selected: false

@@ -1,7 +1,14 @@
-export default function PersonComponent({ srcSuffix, name, selected}) {
+export default function PersonComponent({ srcSuffix, name, selected, id }) {
     
+    const dataParams = JSON.stringify({
+        alias: 'leaders',
+        data: {
+          selectedUserId: id
+        }
+    })
+
     return (
-        `<div class="vote__item ${selected ? 'vote__item--selected' : ''}">
+        `<div class="vote__item ${selected ? 'vote__item--selected' : ''}" data-action="update" data-params=${dataParams}>
             <div class="vote__item__awards">${selected ? '👍' : ''}</div>
             <div class="vote__item__pic">
                 <picture>
