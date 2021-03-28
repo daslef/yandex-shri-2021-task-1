@@ -17,6 +17,18 @@
         font-family: 'Roboto Bold';
         z-index: 15;
 
+        @include _landscape_1024 {
+            font-size: 54px;
+        }
+
+        @include _landscape_1366 {
+            font-size: 80pxpx;
+        }
+
+        @include _landscape_1920 {
+            font-size: 120px;
+        }
+
         &--selected {
             position: absolute;
             top: 286px;

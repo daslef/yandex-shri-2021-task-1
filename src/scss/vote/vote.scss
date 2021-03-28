@@ -116,6 +116,18 @@
         font-family: 'Roboto Bold';        
         top: -2px;
         z-index: 1;
+
+        @include _landscape_1024 {
+            font-size: 54px;
+        }
+
+        @include _landscape_1366 {
+            font-size: 80pxpx;
+        }
+
+        @include _landscape_1920 {
+            font-size: 120px;
+        }
     }
 
     &--selected {
@@ -127,6 +139,7 @@
     &:hover {
         background: var(--person-hover-background);
         box-shadow: var(--person-hover-shadow);
+        cursor: pointer;
     }
 
 }
@@ -154,6 +167,10 @@
         & > path {
             fill: var(--vote-button-hover-background);
         }
+    }
+
+    &:hover {
+        cursor: pointer;
     }
 }
 
